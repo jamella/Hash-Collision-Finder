@@ -1,5 +1,5 @@
 output: main.o generator.o md5.o
-	gcc main.o generator.o md5.o -o collision_finder -lcrypto
+	gcc main.o generator.o md5.o -o collision_finder -lcrypto -g
 
 main.o: main.c
 	gcc -c main.c
