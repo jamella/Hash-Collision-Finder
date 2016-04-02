@@ -5,12 +5,12 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include<sys/time.h>
+#include<time.h>
 
 #include"md5.h"
 #include"generator.h"
 
-#define MAX 50000               /* How many hashes will be generated */
+#define MAX 30000               /* How many hashes will be generated */
 #define DESIRED_COLLISION 14    /* How many bytes must be equal to be considered a collision */
 #define BUFFER_SIZE 22          /* The size for create a string representation of a number */
 
@@ -21,12 +21,10 @@ int main(int argc, char *argv[])
     char buffer[BUFFER_SIZE];
     unsigned char byte_collisions;  /* Counts equal bytes in two hashes */
 
-    struct timeval stop, start;
-    gettimeofday(&start, NULL);
-
     seed_generator();
-
     printf("==> Generating %lu random messages...\n", MAX);
+
+    clock_t start = clock();
 
     for (int i = 0; i < MAX; i++){
         values[i] = generate_number(); 
@@ -69,12 +67,7 @@ int main(int argc, char *argv[])
 
         }
     }
-
-    gettimeofday(&stop, NULL);
-
-    // printf("took %.4f seconds\n", (float)((stop.tv_usec - start.tv_usec) * 0.000001));
-
-    printf("==> No collision found...\n");
+    printf("Time elapsed: %f seconds\n", ((double)clock() - start) / CLOCKS_PER_SEC);
 
     return 0;
 }
