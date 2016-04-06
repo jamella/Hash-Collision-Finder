@@ -10,8 +10,8 @@
 #include"md5.h"
 #include"generator.h"
 
-#define MAX 30000               /* How many hashes will be generated */
-#define DESIRED_COLLISION 14    /* How many bytes must be equal to be considered a collision */
+#define MAX 500000               /* How many hashes will be generated */
+#define DESIRED_COLLISION 22    /* How many bytes must be equal to be considered a collision */
 #define BUFFER_SIZE 22          /* The size for create a string representation of a number */
 
 int main(int argc, char *argv[])
