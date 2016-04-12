@@ -83,7 +83,11 @@ int main(int argc, char *argv[])
 
         }
     }
+        
+    printf("Finished search for collision\n");
     printf("Time elapsed: %f seconds\n", ((double)clock() - start) / CLOCKS_PER_SEC);
+    printf("Time elapsed: %f minutes\n", (((double)clock() - start) / CLOCKS_PER_SEC) / 60);
+    printf("Time elapsed: %f hours\n", ((((double)clock() - start) / CLOCKS_PER_SEC) / 60) / 60);
 
     return 0;
 }
