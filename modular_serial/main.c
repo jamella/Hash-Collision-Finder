@@ -43,7 +43,6 @@ int main(int argc, char *argv[])
     printf("==> Searching for collisions in hashes\n");
 
     for (int i = 0; i < MAX; i++){
-        printf("Index: %d\n", i);
         for (int j = i + 1; j < MAX; j++){
             byte_collisions = 0;
 
