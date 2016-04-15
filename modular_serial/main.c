@@ -43,6 +43,10 @@ int main(int argc, char *argv[])
     printf("==> Searching for collisions in hashes\n");
 
     for (int i = 0; i < MAX; i++){
+        if (i % WARNS_AFTER == 0){
+            printf("Already checked %d hashes\n", i); 
+        }
+    
         for (int j = i + 1; j < MAX; j++){
             byte_collisions = 0;
 
