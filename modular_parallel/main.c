@@ -17,7 +17,6 @@
 
 #define WARNS_AFTER 10000       /* Display a warning of status after X repetitions */
 
-#define CURRENT_TRD omp_get_thread_num()
 #define THREADS 4
 
 int main(int argc, char *argv[])
