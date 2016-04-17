@@ -11,7 +11,7 @@
 #include"generator.h"
 
 #define MAX 50000               /* How many hashes will be generated */
-#define DESIRED_COLLISION 17    /* How many bytes must be equal to be considered a collision */
+#define DESIRED_COLLISION 13    /* How many bytes must be equal to be considered a collision */
 #define BUFFER_SIZE 22          /* The size for create a string representation of a number */
 
 #define WARNS_AFTER 10000       /* Display a warning of status after X repetitions */
