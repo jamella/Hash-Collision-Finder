@@ -16,6 +16,9 @@
 
 #define WARNS_AFTER 10000       /* Display a warning of status after X repetitions */
 
+void parse_arguments(int argc, char *argv[]);       /* Function to parse arguments received from stdin */
+void display_help_message();                        /* Display the parameters order and how to use properly */
+
 int main(int argc, char *argv[])
 {
     unsigned long long int values[MAX];
@@ -87,4 +90,17 @@ int main(int argc, char *argv[])
     printf("Time elapsed: %f hours\n", ((((double)clock() - start) / CLOCKS_PER_SEC) / 60) / 60);
 
     return 0;
+}
+
+void parse_arguments(int argc, char *argv[])
+{
+    if (argc < 2){
+        display_help_message(); 
+    }
+}
+
+void display_help_message(char *program_name)
+{
+    printf("Usage: %s [desired byte collision]\n");
+    printf("[desired byte collision] = How many bytes must be equal for the hash be considered a collision\n");
 }
