@@ -13,6 +13,8 @@
 #define BUFFER_SIZE 22          /* The size for create a string representation of a number */
 #define WARNS_AFTER 10000       /* Display a warning of status after X repetitions */
 
+#define MAX_EXPONENT 18446744000000000000  /* The maximum number of iteratinons for MD5 */
+
 void parse_arguments(int argc, char *argv[], unsigned int *desired_collision);       /* Function to parse arguments received from stdin */
 void display_help_message();                        /* Display the parameters order and how to use properly */
 
