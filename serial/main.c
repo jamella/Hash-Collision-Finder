@@ -10,25 +10,34 @@
 #include"md5.h"
 #include"generator.h"
 
-#define MAX 50000               /* How many hashes will be generated */
-#define DESIRED_COLLISION 13    /* How many bytes must be equal to be considered a collision */
 #define BUFFER_SIZE 22          /* The size for create a string representation of a number */
-
 #define WARNS_AFTER 10000       /* Display a warning of status after X repetitions */
+
+#define MAX_EXPONENT 18446744000000000000  /* The maximum number of iteratinons for MD5 */
+
+void parse_arguments(int argc, char *argv[], unsigned int *desired_collision);       /* Function to parse arguments received from stdin */
+void display_help_message();                        /* Display the parameters order and how to use properly */
 
 int main(int argc, char *argv[])
 {
-    unsigned long long int values[MAX];
-    char *hashes[MAX];
+    unsigned long long int *values;
+    char **hashes;
     char buffer[BUFFER_SIZE];
     unsigned char byte_collisions;  /* Counts equal bytes in two hashes */
+    unsigned int desired_collision = 0;
+
+    parse_arguments(argc, argv, &desired_collision);
+    const unsigned long long int iterations = calculate_iterations(desired_collision);
+
+    values = malloc(sizeof(unsigned long long int) * iterations);
+    hashes = malloc(sizeof(char*) * iterations);
 
     seed_generator();
-    printf("==> Generating %lu random messages...\n", MAX);
+    printf("==> Generating %lu random messages...\n", iterations);
 
     clock_t start = clock();
 
-    for (int i = 0; i < MAX; i++){
+    for (int i = 0; i < iterations; i++){
         if(i % WARNS_AFTER == 0){
             printf("==> Status: %d hashes processed\n", i); 
         }
@@ -57,7 +66,7 @@ int main(int argc, char *argv[])
                  * Remaining tries + collisions found must be equal or greater than desired collision value.
                  * This prevents to continue test hashes that doesn't satisfy the desired collision value, improving performance.
                  */
-                if(((MD5_HEX_DIGEST_SIZE - 1) - k) + byte_collisions < DESIRED_COLLISION){
+                if(((MD5_HEX_DIGEST_SIZE - 1) - k) + byte_collisions < desired_collision){
                     break; 
                 }
 
@@ -66,7 +75,7 @@ int main(int argc, char *argv[])
                 } 
             }
 
-            if(byte_collisions >= DESIRED_COLLISION){
+            if(byte_collisions >= desired_collision){
                 printf("==> %d bytes collision found!!!! Iteration: %d\n", byte_collisions, i);
                 printf("md5('%ld')\t==\t%s\nmd5('%ld')\t==\t%s\n", values[i], hashes[i], values[j], hashes[j]);
             }
@@ -80,4 +89,20 @@ int main(int argc, char *argv[])
     printf("Time elapsed: %f hours\n", ((((double)clock() - start) / CLOCKS_PER_SEC) / 60) / 60);
 
     return 0;
+}
+
+void parse_arguments(int argc, char *argv[], unsigned int *desired_collision)
+{
+    if (argc < 2){
+        display_help_message(argv[0]); 
+        exit(1);
+    }
+
+    *desired_collision = atoi(argv[1]);
+}
+
+void display_help_message(char *program_name)
+{
+    printf("Usage: %s [desired byte collision]\n", program_name);
+    printf("[desired byte collision] = How many bytes must be equal for the hash be considered a collision\n");
 }
