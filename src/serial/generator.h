@@ -11,6 +11,6 @@ _Bool seed_generator();
 long int generate_number();
 
 /* Calculate how many iteratins are needed to find a collision */
-unsigned long long int calculate_iterations(int desired_bytes);
+unsigned __int128 calculate_iterations(int desired_bytes);
 
 #endif
