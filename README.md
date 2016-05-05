@@ -3,7 +3,9 @@ A parallel and distributed generic attack to find collision in hash functions
 
 ## Compiling
 To compile all implementations:
-```make```
+```
+make
+```
 Compiling specific implementations:
 ```
 make serial
