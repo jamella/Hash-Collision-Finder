@@ -1,5 +1,6 @@
 #include<stdlib.h>
 #include<time.h>
+#include<math.h>
 
 #include"generator.h"
 
@@ -17,4 +18,16 @@ _Bool seed_generator()
 long int generate_number()
 {
     return random();
+}
+
+unsigned __int128 calculate_iterations(int desired_bytes)
+{
+    unsigned __int128 result = 1;
+    unsigned int exponent = (desired_bytes * 4) / 2;
+
+    for (int i = 1; i <= exponent; i++){
+        result *= 2; 
+    }
+
+    return result;
 }

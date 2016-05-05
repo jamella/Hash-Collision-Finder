@@ -10,4 +10,7 @@ _Bool seed_generator();
 /* Return a call to random() */
 long int generate_number();
 
+/* Calculate how many iteratins are needed to find a collision */
+unsigned __int128 calculate_iterations(int desired_bytes);
+
 #endif

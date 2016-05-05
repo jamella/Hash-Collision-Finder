@@ -11,50 +11,57 @@
 #include"md5.h"
 #include"generator.h"
 
-#define MAX 50000               /* How many hashes will be generated */
-#define DESIRED_COLLISION 15    /* How many bytes must be equal to be considered a collision */
 #define BUFFER_SIZE 22          /* The size for create a string representation of a number */
-
 #define WARNS_AFTER 10000       /* Display a warning of status after X repetitions */
 
 #define THREADS 4
 
+void parse_arguments(int argc, char *argv[], unsigned int *desired_collision);       /* Function to parse arguments received from stdin */
+void display_help_message();                        /* Display the parameters order and how to use properly */
+
 int main(int argc, char *argv[])
 {
-    unsigned long long int values[MAX];
-    char *hashes[MAX];
+    unsigned long long int *values;
+    unsigned char **hashes;
     char buffer[THREADS][BUFFER_SIZE];
+    unsigned int desired_collision = 0;
+
+    parse_arguments(argc, argv, &desired_collision);
+    const unsigned __int128 iterations = calculate_iterations(desired_collision);
+
+    values = malloc(sizeof(unsigned long long int) * iterations);
+    hashes = malloc(sizeof(unsigned char*) * iterations);
 
     seed_generator();
-    printf("==> Generating %lu random messages...\n", MAX);
+    printf("==> Generating %lu random messages...\n", iterations);
 
     clock_t start = clock();
 
     # pragma omp parallel for num_threads(THREADS)
-    for (int i = 0; i < MAX; i++){
+    for (int i = 0; i < iterations; i++){
         values[i] = generate_number(); 
         values[i] = (values[i] << 32) | generate_number();
     }
 
-    printf("==> Hashing all %lu messages...\n", MAX);
+    printf("==> Hashing all %lu messages...\n", iterations);
 
     # pragma omp parallel for num_threads(THREADS)
-    for (int i = 0; i < MAX; i++){
+    for (int i = 0; i < iterations; i++){
         unsigned char current_thread = omp_get_thread_num();
 
         snprintf(buffer[current_thread], BUFFER_SIZE, "%ld", values[i]);           /* Representing the number as string for hash process */
-        hashes[i] = md5(buffer[current_thread], strlen(buffer[current_thread]));      /* Get the hexadecimal md5 hash */
+        hashes[i] = raw_md5(buffer[current_thread], strlen(buffer[current_thread]));      /* Get the hexadecimal md5 hash */
     }
 
     printf("==> Searching for collisions in hashes\n");
 
-    for (int i = 0; i < MAX; i++){
+    for (int i = 0; i < iterations; i++){
         if (i % WARNS_AFTER == 0){
             printf("Already checked %d hashes\n", i); 
         }
 
         # pragma omp parallel for num_threads(THREADS)
-        for (int j = i + 1; j < MAX; j++){
+        for (int j = i + 1; j < iterations; j++){
             unsigned char byte_collisions = 0;
 
             /* 
@@ -66,24 +73,36 @@ int main(int argc, char *argv[])
             }
 
             /* Check how many bytes are equal */
-            for (int k = 0; k < MD5_HEX_DIGEST_SIZE; k++){
+            for (int k = 0; k < MD5_DIGEST_SIZE; k++){
+                /* 
+                 * Storing temporarily the bytes to compare 
+                 * I was having issue using bitshift operations in matrix implementation
+                 */
+                unsigned char first_byte = 0, second_byte = 0;
                 /*
                  * Checks whether it's possible to satisfy the desired collision value with the remaining bytes to test.
                  * Remaining tries + collisions found must be equal or greater than desired collision value.
                  * This prevents to continue test hashes that doesn't satisfy the desired collision value, improving performance.
-                */
-                if(((MD5_HEX_DIGEST_SIZE - 1) - k) + byte_collisions < DESIRED_COLLISION){
+                 */
+                if(((MD5_HEX_DIGEST_SIZE - 1) - (k * 2)) + byte_collisions < desired_collision){
                     break; 
                 }
 
-                if ((hashes[i][k] == hashes[j][k])){
+                first_byte = hashes[i][k];
+                second_byte = hashes[j][k];
+
+                if (((first_byte >> 4) ^ (second_byte >> 4)) == 0){
                     byte_collisions++;
-                }
+                } 
+
+                if (((first_byte << 4) ^ (second_byte << 4)) == 0){
+                    byte_collisions++;
+                }    
             }
 
-            if(byte_collisions >= DESIRED_COLLISION){
+            if(byte_collisions >= desired_collision){
                 printf("==> %d bytes collision found!!!! Iteration: %d\n", byte_collisions, i);
-                printf("md5('%ld')\t==\t%s\nmd5('%ld')\t==\t%s\n", values[i], hashes[i], values[j], hashes[j]);
+                printf("md5('%ld')\t==\t%s\nmd5('%ld')\t==\t%s\n", values[i], get_hex_from_raw_digest(hashes[i]), values[j], get_hex_from_raw_digest(hashes[j]));
             }
         }
     }
@@ -94,4 +113,20 @@ int main(int argc, char *argv[])
     printf("Time elapsed: %f hours\n", ((((double)clock() - start) / CLOCKS_PER_SEC) / 60) / 60);
 
     return 0;
+}
+
+void parse_arguments(int argc, char *argv[], unsigned int *desired_collision)
+{
+    if (argc < 2){
+        display_help_message(argv[0]); 
+        exit(1);
+    }
+
+    *desired_collision = atoi(argv[1]);
+}
+
+void display_help_message(char *program_name)
+{
+    printf("Usage: %s [desired byte collision]\n", program_name);
+    printf("[desired byte collision] = How many bytes must be equal for the hash be considered a collision\n");
 }
