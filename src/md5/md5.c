@@ -8,7 +8,7 @@
 unsigned char* raw_md5(const char *data, int data_length)
 {
     MD5_CTX context;
-    unsigned char *digest = (char*)malloc(MD5_DIGEST_SIZE);
+    unsigned char *digest = (unsigned char*)malloc(MD5_DIGEST_SIZE);
 
     MD5_Init(&context);
 
