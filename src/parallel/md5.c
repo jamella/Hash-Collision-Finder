@@ -33,11 +33,21 @@ char* md5(const char *data, int data_length)
     char *out = (char*)malloc(MD5_HEX_DIGEST_SIZE + 1);
     unsigned char *digest = raw_md5(data, data_length);
 
-    for (int n = 0; n < 16; ++n) {
+    for (int n = 0; n < MD5_DIGEST_SIZE; ++n) {
         snprintf(&(out[n*2]), 16*2, "%02x", (unsigned int)digest[n]);
     }
 
     free(digest);
+
+    return out;
+}
+
+char* get_hex_from_raw_digest(unsigned char *digest)
+{
+    char *out = (char*)malloc(MD5_HEX_DIGEST_SIZE + 1);
+    for (int n = 0; n < MD5_DIGEST_SIZE; ++n) {
+        snprintf(&(out[n*2]), 16*2, "%02x", (unsigned int)digest[n]);
+    }
 
     return out;
 }
