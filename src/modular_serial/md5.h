@@ -16,4 +16,7 @@ unsigned char* raw_md5(const char *data, int data_length);
 /* Computes the hexadecimal representation of the hash */
 char* md5(const char *data, int data_length);
 
+/* Get the hexadecimal representation of an raw digest */
+char* get_hex_from_raw_digest(unsigned char *digest);
+
 #endif
