@@ -6,7 +6,6 @@
 #include<stdlib.h>
 #include<string.h>
 #include<time.h>
-#include<sys/types.h>
 
 #include"md5.h"
 #include"generator.h"
@@ -16,25 +15,6 @@
 
 void parse_arguments(int argc, char *argv[], unsigned int *desired_collision);       /* Function to parse arguments received from stdin */
 void display_help_message();                        /* Display the parameters order and how to use properly */
-
-/*void uint128_to_str_iter(unsigned __int128 n, char *out,int firstiter)
-{
-    static int offset=0;
-    if (firstiter){
-        offset=0;
-    }
-    if (n == 0) {
-        return;
-    }
-    uint128_to_str_iter(n/10,out,0);
-    out[offset++]=n%10+0x30;
-}
-
-char* uint128_to_str(unsigned __int128 n){
-    char *out=calloc(sizeof(char),40);
-    uint128_to_str_iter(n, out, 1);
-    return out;
-}*/
 
 int main(int argc, char *argv[])
 {
@@ -79,6 +59,10 @@ int main(int argc, char *argv[])
 
             /* Check how many bytes are equal */
             for (int k = 0; k < MD5_DIGEST_SIZE; k++){
+                /* 
+                 * Storing temporarily the bytes to compare 
+                 * I was having issue using bitshift operations in matrix implementation
+                 */
                 unsigned char first_byte = 0, second_byte = 0;
                 /*
                  * Checks whether it's possible to satisfy the desired collision value with the remaining bytes to test.
@@ -113,6 +97,9 @@ int main(int argc, char *argv[])
     printf("Time elapsed: %f seconds\n", ((double)clock() - start) / CLOCKS_PER_SEC);
     printf("Time elapsed: %f minutes\n", (((double)clock() - start) / CLOCKS_PER_SEC) / 60);
     printf("Time elapsed: %f hours\n", ((((double)clock() - start) / CLOCKS_PER_SEC) / 60) / 60);
+
+    free(hashes);
+    free(values); 
 
     return 0;
 }
