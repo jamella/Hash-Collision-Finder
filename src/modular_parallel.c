@@ -14,19 +14,18 @@
 #define BUFFER_SIZE 22          /* The size for create a string representation of a number */
 #define WARNS_AFTER 10000       /* Display a warning of status after X repetitions */
 
-#define THREADS 4
-
-void parse_arguments(int argc, char *argv[], unsigned int *desired_collision);       /* Function to parse arguments received from stdin */
+void parse_arguments(int argc, char *argv[], unsigned int *desired_collision, unsigned int *threads);       /* Function to parse arguments received from stdin */
 void display_help_message();                        /* Display the parameters order and how to use properly */
 
 int main(int argc, char *argv[])
 {
     unsigned long long int *values;
     unsigned char **hashes;
-    char buffer[THREADS][BUFFER_SIZE];
     unsigned int desired_collision = 0;
+    unsigned int threads = 0;
 
-    parse_arguments(argc, argv, &desired_collision);
+    parse_arguments(argc, argv, &desired_collision, &threads);
+    char buffer[threads][BUFFER_SIZE];
     const unsigned __int128 iterations = calculate_iterations(desired_collision);
 
     values = malloc(sizeof(unsigned long long int) * iterations);
@@ -37,7 +36,7 @@ int main(int argc, char *argv[])
 
     clock_t start = clock();
 
-    # pragma omp parallel for num_threads(THREADS)
+    # pragma omp parallel for num_threads(threads)
     for (int i = 0; i < iterations; i++){
         values[i] = generate_number(); 
         values[i] = (values[i] << 32) | generate_number();
@@ -45,7 +44,7 @@ int main(int argc, char *argv[])
 
     printf("==> Hashing all %lu messages...\n", iterations);
 
-    # pragma omp parallel for num_threads(THREADS)
+    # pragma omp parallel for num_threads(threads)
     for (int i = 0; i < iterations; i++){
         unsigned char current_thread = omp_get_thread_num();
 
@@ -60,7 +59,7 @@ int main(int argc, char *argv[])
             printf("Already checked %d hashes\n", i); 
         }
 
-        # pragma omp parallel for num_threads(THREADS)
+        # pragma omp parallel for num_threads(threads)
         for (int j = i + 1; j < iterations; j++){
             unsigned char byte_collisions = 0;
 
@@ -115,18 +114,20 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-void parse_arguments(int argc, char *argv[], unsigned int *desired_collision)
+void parse_arguments(int argc, char *argv[], unsigned int *desired_collision, unsigned int *threads)
 {
-    if (argc < 2){
+    if (argc < 3){
         display_help_message(argv[0]); 
         exit(1);
     }
 
     *desired_collision = atoi(argv[1]);
+    *threads = atoi(argv[2]);
 }
 
 void display_help_message(char *program_name)
 {
-    printf("Usage: %s [desired byte collision]\n", program_name);
+    printf("Usage: %s [desired byte collision] [desired number of threads]\n", program_name);
     printf("[desired byte collision] = How many bytes must be equal for the hash be considered a collision\n");
+    printf("[desired number of threads] = How many threads the program will generate to find a collision. Recomended: number of cores of your computer\n");
 }

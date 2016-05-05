@@ -14,9 +14,7 @@
 #define BUFFER_SIZE 22          /* The size for create a string representation of a number */
 #define WARNS_AFTER 10000       /* Display a warning of status after X repetitions */
 
-#define THREADS 4
-
-void parse_arguments(int argc, char *argv[], unsigned int *desired_collision);       /* Function to parse arguments received from stdin */
+void parse_arguments(int argc, char *argv[], unsigned int *desired_collision, unsigned int *threads);       /* Function to parse arguments received from stdin */
 void display_help_message();                        /* Display the parameters order and how to use properly */
 
 int main(int argc, char *argv[])
@@ -25,8 +23,9 @@ int main(int argc, char *argv[])
     unsigned char **hashes;
     char buffer[BUFFER_SIZE];
     unsigned int desired_collision = 0;
+    unsigned int threads = 0;
 
-    parse_arguments(argc, argv, &desired_collision);
+    parse_arguments(argc, argv, &desired_collision, &threads);
     const unsigned __int128 iterations = calculate_iterations(desired_collision);
 
     seed_generator();
@@ -49,7 +48,7 @@ int main(int argc, char *argv[])
         snprintf(buffer, BUFFER_SIZE, "%llu", values[i]); /* Representing the number as string for hash process */
         hashes[i] = raw_md5(buffer, strlen(buffer));         /* Get the hexadecimal md5 hash */
 
-        # pragma omp parallel for num_threads(THREADS)
+        # pragma omp parallel for num_threads(threads)
         for (int j = 0; j < i; j++){
             int byte_collisions = 0;
 
@@ -105,18 +104,20 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-void parse_arguments(int argc, char *argv[], unsigned int *desired_collision)
+void parse_arguments(int argc, char *argv[], unsigned int *desired_collision, unsigned int *threads)
 {
-    if (argc < 2){
+    if (argc < 3){
         display_help_message(argv[0]); 
         exit(1);
     }
 
     *desired_collision = atoi(argv[1]);
+    *threads = atoi(argv[2]);
 }
 
 void display_help_message(char *program_name)
 {
-    printf("Usage: %s [desired byte collision]\n", program_name);
+    printf("Usage: %s [desired byte collision] [desired number of threads]\n", program_name);
     printf("[desired byte collision] = How many bytes must be equal for the hash be considered a collision\n");
+    printf("[desired number of threads] = How many threads the program will generate to find a collision. Recomended: number of cores of your computer\n");
 }
