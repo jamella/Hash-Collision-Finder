@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
                 } 
             }
 
-            if(byte_collisions >= desired_collision){
+            if(byte_collisions == desired_collision){
                 printf("==> %d bytes collision found!!!! Iteration: %d\n", byte_collisions, i);
                 printf("md5('%llu')\t==\t%s\nmd5('%llu')\t==\t%s\n", values[i], get_hex_from_raw_digest(hashes[i]), values[j], get_hex_from_raw_digest(hashes[j]));
             }
