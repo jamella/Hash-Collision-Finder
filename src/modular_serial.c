@@ -65,35 +65,41 @@ int main(int argc, char *argv[])
                 continue; 
             }
 
-            /* Check how many bytes are equal */
-            for (int k = 0; k < MD5_DIGEST_SIZE; k++){
+            /*
+             * Desired collision is how many bytes (hexadecimal representation) must be equal
+             * Each iteration of k, checks 2 hexadecimal bytes
+             * As we do not have a way to have a half iteration hahahaha This case is treated inside the loop
+             */
+            for (int k = 0; k < (int)((desired_collision + 1) / 2); k++){
                 /* 
                  * Storing temporarily the bytes to compare 
                  * I was having issue using bitshift operations in matrix implementation
                  */
                 unsigned char first_byte = 0, second_byte = 0;
-                /*
-                 * Checks whether it's possible to satisfy the desired collision value with the remaining bytes to test.
-                 * Remaining tries + collisions found must be equal or greater than desired collision value.
-                 * This prevents to continue test hashes that doesn't satisfy the desired collision value, improving performance.
-                 */
-                if(((MD5_HEX_DIGEST_SIZE - 1) - (k * 2)) + byte_collisions < desired_collision){
-                    break; 
-                }
 
                 first_byte = hashes[i][k];
                 second_byte = hashes[j][k];
 
+                /* Check the first 4 bits (hexadecimal byte) */
                 if (((first_byte >> 4) ^ (second_byte >> 4)) == 0){
                     byte_collisions++;
                 } 
 
+                /* 
+                 * If desired_collsion is odd, it must not check the next 4 bits
+                 * Because it can create collisions that are not sequence
+                 */
+                if (k == ((int)((desired_collision) + 1) / 2) - 1){
+                    break; 
+                }
+
+                /* Check the last 4 bits (hexadecimal byte) */
                 if (((first_byte << 4) ^ (second_byte << 4)) == 0){
                     byte_collisions++;
                 } 
             }
 
-            if (byte_collisions >= desired_collision){
+            if (byte_collisions == desired_collision){
                 printf("==> %d bytes collision found!!!! Iteration: %d\n", byte_collisions, i);
                 printf("md5('%llu')\t==\t%s\nmd5('%llu')\t==\t%s\n", values[i], get_hex_from_raw_digest(hashes[i]), values[j], get_hex_from_raw_digest(hashes[j]));
             }
