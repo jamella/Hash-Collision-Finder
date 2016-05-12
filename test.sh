@@ -32,7 +32,7 @@ if [ $1 == "modular_parallel" ] || [ $1 == "parallel" ]; then
 fi
 
 # Each file will have a different name, the current seconds since epoch
-FILENAME="$1_$(date +%s).txt"
+FILENAME="$1_$2_$(date +%s).txt"
 
 echo "==> Starting test"
 

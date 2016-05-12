@@ -1,0 +1,171 @@
+TESTS WITH 4 THREADS
+
+
+
+ Execution number 1
+
+==> Generating 4096 random messages...
+==> Hashing all 4096 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Finished search for collision
+Time elapsed: 0.344157 seconds
+Time elapsed: 0.005736 minutes
+Time elapsed: 0.000096 hours
+
+real	0m0.088s
+user	0m0.343s
+sys	0m0.000s
+
+
+
+ Execution number 2
+
+==> Generating 4096 random messages...
+==> Hashing all 4096 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Finished search for collision
+Time elapsed: 0.343724 seconds
+Time elapsed: 0.005729 minutes
+Time elapsed: 0.000095 hours
+
+real	0m0.088s
+user	0m0.337s
+sys	0m0.007s
+
+
+
+ Execution number 3
+
+==> Generating 4096 random messages...
+==> Hashing all 4096 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Finished search for collision
+Time elapsed: 0.345081 seconds
+Time elapsed: 0.005752 minutes
+Time elapsed: 0.000096 hours
+
+real	0m0.088s
+user	0m0.343s
+sys	0m0.000s
+
+
+
+ Execution number 4
+
+==> Generating 4096 random messages...
+==> Hashing all 4096 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Finished search for collision
+Time elapsed: 0.343306 seconds
+Time elapsed: 0.005723 minutes
+Time elapsed: 0.000095 hours
+
+real	0m0.088s
+user	0m0.337s
+sys	0m0.007s
+
+
+
+ Execution number 5
+
+==> Generating 4096 random messages...
+==> Hashing all 4096 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Finished search for collision
+Time elapsed: 0.340478 seconds
+Time elapsed: 0.005675 minutes
+Time elapsed: 0.000095 hours
+
+real	0m0.087s
+user	0m0.340s
+sys	0m0.000s
+
+
+
+ Execution number 6
+
+==> Generating 4096 random messages...
+==> Hashing all 4096 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Finished search for collision
+Time elapsed: 0.342057 seconds
+Time elapsed: 0.005702 minutes
+Time elapsed: 0.000095 hours
+
+real	0m0.088s
+user	0m0.340s
+sys	0m0.000s
+
+
+
+ Execution number 7
+
+==> Generating 4096 random messages...
+==> Hashing all 4096 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Finished search for collision
+Time elapsed: 0.343252 seconds
+Time elapsed: 0.005721 minutes
+Time elapsed: 0.000095 hours
+
+real	0m0.088s
+user	0m0.340s
+sys	0m0.003s
+
+
+
+ Execution number 8
+
+==> Generating 4096 random messages...
+==> Hashing all 4096 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Finished search for collision
+Time elapsed: 0.344975 seconds
+Time elapsed: 0.005750 minutes
+Time elapsed: 0.000096 hours
+
+real	0m0.089s
+user	0m0.343s
+sys	0m0.000s
+
+
+
+ Execution number 9
+
+==> Generating 4096 random messages...
+==> Hashing all 4096 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Finished search for collision
+Time elapsed: 0.355102 seconds
+Time elapsed: 0.005919 minutes
+Time elapsed: 0.000099 hours
+
+real	0m0.091s
+user	0m0.353s
+sys	0m0.000s
+
+
+
+ Execution number 10
+
+==> Generating 4096 random messages...
+==> Hashing all 4096 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Finished search for collision
+Time elapsed: 0.342885 seconds
+Time elapsed: 0.005715 minutes
+Time elapsed: 0.000095 hours
+
+real	0m0.088s
+user	0m0.343s
+sys	0m0.000s

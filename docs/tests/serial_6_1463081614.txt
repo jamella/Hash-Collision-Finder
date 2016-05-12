@@ -1,0 +1,150 @@
+
+
+
+ Execution number 1
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.143073 seconds
+Time elapsed: 0.002385 minutes
+Time elapsed: 0.000040 hours
+
+real	0m0.144s
+user	0m0.143s
+sys	0m0.000s
+
+
+
+ Execution number 2
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.140483 seconds
+Time elapsed: 0.002341 minutes
+Time elapsed: 0.000039 hours
+
+real	0m0.141s
+user	0m0.140s
+sys	0m0.000s
+
+
+
+ Execution number 3
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.140495 seconds
+Time elapsed: 0.002342 minutes
+Time elapsed: 0.000039 hours
+
+real	0m0.141s
+user	0m0.140s
+sys	0m0.000s
+
+
+
+ Execution number 4
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.141054 seconds
+Time elapsed: 0.002351 minutes
+Time elapsed: 0.000039 hours
+
+real	0m0.142s
+user	0m0.140s
+sys	0m0.000s
+
+
+
+ Execution number 5
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.140771 seconds
+Time elapsed: 0.002346 minutes
+Time elapsed: 0.000039 hours
+
+real	0m0.141s
+user	0m0.140s
+sys	0m0.000s
+
+
+
+ Execution number 6
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.140523 seconds
+Time elapsed: 0.002342 minutes
+Time elapsed: 0.000039 hours
+
+real	0m0.141s
+user	0m0.140s
+sys	0m0.000s
+
+
+
+ Execution number 7
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.141003 seconds
+Time elapsed: 0.002350 minutes
+Time elapsed: 0.000039 hours
+
+real	0m0.142s
+user	0m0.140s
+sys	0m0.000s
+
+
+
+ Execution number 8
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.140471 seconds
+Time elapsed: 0.002341 minutes
+Time elapsed: 0.000039 hours
+
+real	0m0.141s
+user	0m0.140s
+sys	0m0.000s
+
+
+
+ Execution number 9
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.140379 seconds
+Time elapsed: 0.002340 minutes
+Time elapsed: 0.000039 hours
+
+real	0m0.141s
+user	0m0.140s
+sys	0m0.000s
+
+
+
+ Execution number 10
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.140650 seconds
+Time elapsed: 0.002344 minutes
+Time elapsed: 0.000039 hours
+
+real	0m0.141s
+user	0m0.140s
+sys	0m0.000s

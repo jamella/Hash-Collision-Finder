@@ -1,0 +1,151 @@
+TESTS WITH 4 THREADS
+
+
+
+ Execution number 1
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.359063 seconds
+Time elapsed: 0.005985 minutes
+Time elapsed: 0.000100 hours
+
+real	0m0.092s
+user	0m0.357s
+sys	0m0.000s
+
+
+
+ Execution number 2
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.361578 seconds
+Time elapsed: 0.006027 minutes
+Time elapsed: 0.000100 hours
+
+real	0m0.092s
+user	0m0.360s
+sys	0m0.000s
+
+
+
+ Execution number 3
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.356442 seconds
+Time elapsed: 0.005941 minutes
+Time elapsed: 0.000099 hours
+
+real	0m0.091s
+user	0m0.357s
+sys	0m0.000s
+
+
+
+ Execution number 4
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.358631 seconds
+Time elapsed: 0.005978 minutes
+Time elapsed: 0.000100 hours
+
+real	0m0.092s
+user	0m0.357s
+sys	0m0.000s
+
+
+
+ Execution number 5
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.358694 seconds
+Time elapsed: 0.005979 minutes
+Time elapsed: 0.000100 hours
+
+real	0m0.092s
+user	0m0.353s
+sys	0m0.003s
+
+
+
+ Execution number 6
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.359032 seconds
+Time elapsed: 0.005984 minutes
+Time elapsed: 0.000100 hours
+
+real	0m0.092s
+user	0m0.357s
+sys	0m0.000s
+
+
+
+ Execution number 7
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.364692 seconds
+Time elapsed: 0.006079 minutes
+Time elapsed: 0.000101 hours
+
+real	0m0.094s
+user	0m0.360s
+sys	0m0.003s
+
+
+
+ Execution number 8
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.363241 seconds
+Time elapsed: 0.006054 minutes
+Time elapsed: 0.000101 hours
+
+real	0m0.093s
+user	0m0.360s
+sys	0m0.003s
+
+
+
+ Execution number 9
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.358517 seconds
+Time elapsed: 0.005976 minutes
+Time elapsed: 0.000100 hours
+
+real	0m0.091s
+user	0m0.357s
+sys	0m0.000s
+
+
+
+ Execution number 10
+
+==> Generating 4096 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.363099 seconds
+Time elapsed: 0.006052 minutes
+Time elapsed: 0.000101 hours
+
+real	0m0.093s
+user	0m0.363s
+sys	0m0.000s

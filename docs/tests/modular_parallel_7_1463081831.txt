@@ -1,0 +1,187 @@
+TESTS WITH 4 THREADS
+
+
+
+ Execution number 1
+
+==> Generating 16384 random messages...
+==> Hashing all 16384 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+==> 7 bytes collision found!!!! Iteration: 1385
+md5('5611139989625638841')	==	512ee7f234d0770f9da7efa2609295b7
+md5('7592453580422672205')	==	512ee7fcb5161c67939cc19014825970
+Already checked 10000 hashes
+Finished search for collision
+Time elapsed: 8.430819 seconds
+Time elapsed: 0.140514 minutes
+Time elapsed: 0.002342 hours
+
+real	0m2.115s
+user	0m8.410s
+sys	0m0.020s
+
+
+
+ Execution number 2
+
+==> Generating 16384 random messages...
+==> Hashing all 16384 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Already checked 10000 hashes
+Finished search for collision
+Time elapsed: 8.706921 seconds
+Time elapsed: 0.145116 minutes
+Time elapsed: 0.002419 hours
+
+real	0m2.189s
+user	0m8.680s
+sys	0m0.027s
+
+
+
+ Execution number 3
+
+==> Generating 16384 random messages...
+==> Hashing all 16384 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Already checked 10000 hashes
+Finished search for collision
+Time elapsed: 11.479914 seconds
+Time elapsed: 0.191333 minutes
+Time elapsed: 0.003189 hours
+
+real	0m2.879s
+user	0m11.457s
+sys	0m0.023s
+
+
+
+ Execution number 4
+
+==> Generating 16384 random messages...
+==> Hashing all 16384 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+==> 7 bytes collision found!!!! Iteration: 4698
+md5('611735972826842025')	==	5fc38eddc7957ad3b993b5cf37181da3
+md5('2319482410138874475')	==	5fc38edc5f1c82d070e6fa65fa7c00be
+Already checked 10000 hashes
+Finished search for collision
+Time elapsed: 9.356074 seconds
+Time elapsed: 0.155935 minutes
+Time elapsed: 0.002599 hours
+
+real	0m2.354s
+user	0m9.320s
+sys	0m0.037s
+
+
+
+ Execution number 5
+
+==> Generating 16384 random messages...
+==> Hashing all 16384 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Already checked 10000 hashes
+Finished search for collision
+Time elapsed: 8.378087 seconds
+Time elapsed: 0.139635 minutes
+Time elapsed: 0.002327 hours
+
+real	0m2.103s
+user	0m8.357s
+sys	0m0.020s
+
+
+
+ Execution number 6
+
+==> Generating 16384 random messages...
+==> Hashing all 16384 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Already checked 10000 hashes
+Finished search for collision
+Time elapsed: 10.935092 seconds
+Time elapsed: 0.182252 minutes
+Time elapsed: 0.003038 hours
+
+real	0m2.746s
+user	0m10.910s
+sys	0m0.023s
+
+
+
+ Execution number 7
+
+==> Generating 16384 random messages...
+==> Hashing all 16384 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Already checked 10000 hashes
+Finished search for collision
+Time elapsed: 10.265622 seconds
+Time elapsed: 0.171094 minutes
+Time elapsed: 0.002852 hours
+
+real	0m2.582s
+user	0m10.243s
+sys	0m0.023s
+
+
+
+ Execution number 8
+
+==> Generating 16384 random messages...
+==> Hashing all 16384 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Already checked 10000 hashes
+Finished search for collision
+Time elapsed: 8.366139 seconds
+Time elapsed: 0.139436 minutes
+Time elapsed: 0.002324 hours
+
+real	0m2.099s
+user	0m8.353s
+sys	0m0.013s
+
+
+
+ Execution number 9
+
+==> Generating 16384 random messages...
+==> Hashing all 16384 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Already checked 10000 hashes
+Finished search for collision
+Time elapsed: 10.134211 seconds
+Time elapsed: 0.168905 minutes
+Time elapsed: 0.002815 hours
+
+real	0m2.547s
+user	0m10.120s
+sys	0m0.013s
+
+
+
+ Execution number 10
+
+==> Generating 16384 random messages...
+==> Hashing all 16384 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Already checked 10000 hashes
+Finished search for collision
+Time elapsed: 11.061669 seconds
+Time elapsed: 0.184362 minutes
+Time elapsed: 0.003073 hours
+
+real	0m2.780s
+user	0m11.037s
+sys	0m0.023s
