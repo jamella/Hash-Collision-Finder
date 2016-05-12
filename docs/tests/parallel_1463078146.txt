@@ -1,0 +1,157 @@
+TESTS WITH 2 THREADS
+
+
+
+ Execution number 1
+
+==> Generating 1024 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.035611 seconds
+Time elapsed: 0.000594 minutes
+Time elapsed: 0.000010 hours
+
+real	0m0.020s
+user	0m0.040s
+sys	0m0.000s
+
+
+
+ Execution number 2
+
+==> Generating 1024 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.024900 seconds
+Time elapsed: 0.000415 minutes
+Time elapsed: 0.000007 hours
+
+real	0m0.014s
+user	0m0.023s
+sys	0m0.000s
+
+
+
+ Execution number 3
+
+==> Generating 1024 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.023473 seconds
+Time elapsed: 0.000391 minutes
+Time elapsed: 0.000007 hours
+
+real	0m0.013s
+user	0m0.023s
+sys	0m0.000s
+
+
+
+ Execution number 4
+
+==> Generating 1024 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.020192 seconds
+Time elapsed: 0.000337 minutes
+Time elapsed: 0.000006 hours
+
+real	0m0.011s
+user	0m0.017s
+sys	0m0.003s
+
+
+
+ Execution number 5
+
+==> Generating 1024 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.019485 seconds
+Time elapsed: 0.000325 minutes
+Time elapsed: 0.000005 hours
+
+real	0m0.011s
+user	0m0.020s
+sys	0m0.000s
+
+
+
+ Execution number 6
+
+==> Generating 1024 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.026020 seconds
+Time elapsed: 0.000434 minutes
+Time elapsed: 0.000007 hours
+
+real	0m0.014s
+user	0m0.027s
+sys	0m0.000s
+
+
+
+ Execution number 7
+
+==> Generating 1024 random messages...
+==> Status: 0 hashes processed
+==> 5 bytes collision found!!!! Iteration: 670
+md5('5284564604123305986')	==	34580f40f417c54dee2abfecb8e58830
+md5('7399836172609504664')	==	345808ee6997f62a3ea376ff18e29bcb
+Finished search for collision
+Time elapsed: 0.019042 seconds
+Time elapsed: 0.000318 minutes
+Time elapsed: 0.000005 hours
+
+real	0m0.011s
+user	0m0.017s
+sys	0m0.003s
+
+
+
+ Execution number 8
+
+==> Generating 1024 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.018386 seconds
+Time elapsed: 0.000307 minutes
+Time elapsed: 0.000005 hours
+
+real	0m0.012s
+user	0m0.020s
+sys	0m0.000s
+
+
+
+ Execution number 9
+
+==> Generating 1024 random messages...
+==> Status: 0 hashes processed
+Finished search for collision
+Time elapsed: 0.016764 seconds
+Time elapsed: 0.000280 minutes
+Time elapsed: 0.000005 hours
+
+real	0m0.010s
+user	0m0.013s
+sys	0m0.003s
+
+
+
+ Execution number 10
+
+==> Generating 1024 random messages...
+==> Status: 0 hashes processed
+==> 5 bytes collision found!!!! Iteration: 953
+md5('3211605443088241106')	==	508bfb375d1f815a3b4333bafc72ce54
+md5('6458705442814816934')	==	508bfa2259de2c03e1db9d308a53f8ea
+Finished search for collision
+Time elapsed: 0.015920 seconds
+Time elapsed: 0.000266 minutes
+Time elapsed: 0.000004 hours
+
+real	0m0.009s
+user	0m0.013s
+sys	0m0.003s

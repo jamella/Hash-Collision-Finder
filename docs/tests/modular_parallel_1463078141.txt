@@ -1,0 +1,189 @@
+TESTS WITH 2 THREADS
+
+
+
+ Execution number 1
+
+==> Generating 1024 random messages...
+==> Hashing all 1024 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+==> 5 bytes collision found!!!! Iteration: 261
+md5('2959823192525885716')	==	ebd79e9b38f8085e7212fc74ac681e3d
+md5('5327826161568104739')	==	ebd79168b62cceb273ca05c4a9b390a3
+==> 5 bytes collision found!!!! Iteration: 300
+md5('8910929690398911155')	==	ef8d84bfd9bf8dabb2dc7b9a7435b0f3
+md5('7268119242232262011')	==	ef8d8e219445d062473de19342d2e0a1
+Finished search for collision
+Time elapsed: 0.023019 seconds
+Time elapsed: 0.000384 minutes
+Time elapsed: 0.000006 hours
+
+real	0m0.013s
+user	0m0.027s
+sys	0m0.000s
+
+
+
+ Execution number 2
+
+==> Generating 1024 random messages...
+==> Hashing all 1024 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+==> 5 bytes collision found!!!! Iteration: 53
+md5('6238450585810939404')	==	31dd8aecb2d9fb2925a2ce7e83d90885
+md5('5946961287152955986')	==	31dd88d0d91bb8cc9fff8c9b6c3b41c0
+Finished search for collision
+Time elapsed: 0.012344 seconds
+Time elapsed: 0.000206 minutes
+Time elapsed: 0.000003 hours
+
+real	0m0.007s
+user	0m0.010s
+sys	0m0.000s
+
+
+
+ Execution number 3
+
+==> Generating 1024 random messages...
+==> Hashing all 1024 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+==> 5 bytes collision found!!!! Iteration: 233
+md5('1875441310026071128')	==	c99c35ce2dadd6ba8a75cf5acdd12de0
+md5('2299121823958968486')	==	c99c3a99364b32d3767982dac05f4a0f
+Finished search for collision
+Time elapsed: 0.013529 seconds
+Time elapsed: 0.000226 minutes
+Time elapsed: 0.000004 hours
+
+real	0m0.008s
+user	0m0.013s
+sys	0m0.000s
+
+
+
+ Execution number 4
+
+==> Generating 1024 random messages...
+==> Hashing all 1024 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Finished search for collision
+Time elapsed: 0.012405 seconds
+Time elapsed: 0.000207 minutes
+Time elapsed: 0.000003 hours
+
+real	0m0.007s
+user	0m0.010s
+sys	0m0.000s
+
+
+
+ Execution number 5
+
+==> Generating 1024 random messages...
+==> Hashing all 1024 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Finished search for collision
+Time elapsed: 0.012205 seconds
+Time elapsed: 0.000203 minutes
+Time elapsed: 0.000003 hours
+
+real	0m0.007s
+user	0m0.010s
+sys	0m0.000s
+
+
+
+ Execution number 6
+
+==> Generating 1024 random messages...
+==> Hashing all 1024 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Finished search for collision
+Time elapsed: 0.013200 seconds
+Time elapsed: 0.000220 minutes
+Time elapsed: 0.000004 hours
+
+real	0m0.007s
+user	0m0.013s
+sys	0m0.000s
+
+
+
+ Execution number 7
+
+==> Generating 1024 random messages...
+==> Hashing all 1024 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Finished search for collision
+Time elapsed: 0.013108 seconds
+Time elapsed: 0.000219 minutes
+Time elapsed: 0.000004 hours
+
+real	0m0.007s
+user	0m0.013s
+sys	0m0.000s
+
+
+
+ Execution number 8
+
+==> Generating 1024 random messages...
+==> Hashing all 1024 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+Finished search for collision
+Time elapsed: 0.013592 seconds
+Time elapsed: 0.000227 minutes
+Time elapsed: 0.000004 hours
+
+real	0m0.008s
+user	0m0.010s
+sys	0m0.003s
+
+
+
+ Execution number 9
+
+==> Generating 1024 random messages...
+==> Hashing all 1024 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+==> 5 bytes collision found!!!! Iteration: 125
+md5('6964568679357341341')	==	7a1ce9f464ef83b61ad9bc0387e763d7
+md5('3832417864744268019')	==	7a1ce0b96dae830f6630a678a6cef8c2
+Finished search for collision
+Time elapsed: 0.012271 seconds
+Time elapsed: 0.000205 minutes
+Time elapsed: 0.000003 hours
+
+real	0m0.007s
+user	0m0.010s
+sys	0m0.000s
+
+
+
+ Execution number 10
+
+==> Generating 1024 random messages...
+==> Hashing all 1024 messages...
+==> Searching for collisions in hashes
+Already checked 0 hashes
+==> 5 bytes collision found!!!! Iteration: 629
+md5('1485519688495127590')	==	651391c97144bd58785e62e8017c3aac
+md5('17268432911479449')	==	6513951280766087f13208b4ebb59d5f
+Finished search for collision
+Time elapsed: 0.013954 seconds
+Time elapsed: 0.000233 minutes
+Time elapsed: 0.000004 hours
+
+real	0m0.008s
+user	0m0.013s
+sys	0m0.000s
