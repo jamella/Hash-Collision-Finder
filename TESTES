@@ -1,0 +1,19 @@
+Os testes a serem realizados sao:
+
+Implementacao serial:
+- Prefixo de 5 bytes de comprimento; (OK)
+- Prefixo de 6 bytes de copmrimento; (OK)
+- Prefixo de 7 bytes de comprimento; (OK)
+- Prefixo de 8 bytes de comprimento; (OK)
+- Prefixo de 10 bytes de comprimento;
+- Prefixo de 15 bytes de comprimento;
+- Prefixo de 20 bytes de comprimento;
+
+Implementacao paralela:
+- Prefixo de 5 bytes de comprimento; (OK)
+- Prefixo de 6 bytes de copmrimento; (OK)
+- Prefixo de 7 bytes de comprimento; (OK)
+- Prefixo de 8 bytes de comprimento; (OK)
+- Prefixo de 10 bytes de comprimento;
+- Prefixo de 15 bytes de comprimento;
+- Prefixo de 20 bytes de comprimento;
