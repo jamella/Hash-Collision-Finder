@@ -10,6 +10,10 @@ Implementacao serial:
 - Prefixo de 20 bytes de comprimento;
 
 Implementacao paralela:
+Todos serao realizados com 2, 4, 8, 16, 32, 64, 128 cores.
+Na maquina que possui 32 cores, serao realizados os de 2-32
+Na maquina que possui 128 cores, o de 64 e 128
+
 - Prefixo de 5 bytes de comprimento; (OK)
 - Prefixo de 6 bytes de copmrimento; (OK)
 - Prefixo de 7 bytes de comprimento; (OK)
