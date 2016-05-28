@@ -21,12 +21,14 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{whitman2011principles}
-M.~Whitman and H.~Mattord, \emph{Principles of information security}.\hskip 1em
-  plus 0.5em minus 0.4em\relax Cengage Learning, 2011.
+\bibitem{tanenbaum2002distributed}
+A.~S. Tanenbaum and M.~Van~Steen, \emph{Distributed systems: principles and
+  paradigms}.\hskip 1em plus 0.5em minus 0.4em\relax Prentice hall Englewood
+  Cliffs, 2002, vol.~2.
 
-\bibitem{manzoor2009quality}
-A.~Manzoor, H.~Truong, and S.~Dustdar, ``Quality aware context information
-  aggregation system for pervasive environments,'' pp. 266--271, 2009.
+\bibitem{van1999parallel}
+P.~C. Van~Oorschot and M.~J. Wiener, ``Parallel collision search with
+  cryptanalytic applications,'' \emph{Journal of cryptology}, vol.~12, no.~1,
+  pp. 1--28, 1999.
 
 \end{thebibliography}
