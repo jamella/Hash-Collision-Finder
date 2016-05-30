@@ -13,44 +13,44 @@ Database file #1: hash-collision.bib
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 2 entries,
+You've used 3 entries,
             4087 wiz_defined-function locations,
-            833 strings with 7596 characters,
-and the built_in function-call counts, 1292 in all, are:
-= -- 99
-> -- 23
+            838 strings with 7762 characters,
+and the built_in function-call counts, 1669 in all, are:
+= -- 124
+> -- 31
 < -- 9
-+ -- 11
-- -- 4
-* -- 74
-:= -- 223
-add.period$ -- 4
-call.type$ -- 2
++ -- 15
+- -- 6
+* -- 87
+:= -- 285
+add.period$ -- 6
+call.type$ -- 3
 change.case$ -- 1
 chr.to.int$ -- 15
-cite$ -- 2
-duplicate$ -- 88
-empty$ -- 104
-format.name$ -- 6
-if$ -- 278
+cite$ -- 3
+duplicate$ -- 119
+empty$ -- 152
+format.name$ -- 9
+if$ -- 368
 int.to.chr$ -- 0
-int.to.str$ -- 2
-missing$ -- 16
-newline$ -- 29
-num.names$ -- 2
-pop$ -- 34
+int.to.str$ -- 3
+missing$ -- 22
+newline$ -- 32
+num.names$ -- 3
+pop$ -- 53
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 98
+skip$ -- 129
 stack$ -- 0
 substring$ -- 35
-swap$ -- 69
+swap$ -- 85
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 2
+type$ -- 3
 warning$ -- 0
-while$ -- 6
-width$ -- 3
-write$ -- 41
+while$ -- 7
+width$ -- 4
+write$ -- 48

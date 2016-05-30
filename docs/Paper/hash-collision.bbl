@@ -31,4 +31,9 @@ P.~C. Van~Oorschot and M.~J. Wiener, ``Parallel collision search with
   cryptanalytic applications,'' \emph{Journal of cryptology}, vol.~12, no.~1,
   pp. 1--28, 1999.
 
+\bibitem{stevens2012attacks}
+M.~M.~J. Stevens \emph{et~al.}, \emph{Attacks on hash functions and
+  applications}.\hskip 1em plus 0.5em minus 0.4em\relax Mathematical Institute,
+  Faculty of Science, Leiden University, 2012.
+
 \end{thebibliography}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2016.2.16)  28 MAY 2016 17:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2016.2.16)  30 MAY 2016 09:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -351,8 +351,81 @@ Missing character: There is no ­ in font ptmr7t!
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no “ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ˜ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ˜ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no œ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ˜ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ˜ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ˜ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ˜ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no ‰ in font ptmr7t!
+Missing character: There is no ˆ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no ‰ in font ptmr7t!
+Missing character: There is no ˆ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no † in font ptmr7t!
+Missing character: There is no ’ in font ptmr7t!
+Missing character: There is no Ã in font ptmr7t!
+Missing character: There is no — in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no † in font ptmr7t!
+Missing character: There is no ’ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no ˆ in font ptmr7t!
+Missing character: There is no ˆ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no ˆ in font ptmr7t!
+Missing character: There is no ˆ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no ˆ in font ptmr7t!
+Missing character: There is no ˆ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no ˆ in font ptmr7t!
+Missing character: There is no ’ in font ptmr7t!
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no ‰ in font ptmr7t!
+Missing character: There is no ˆ in font ptmr7t!
 
-(./hash-collision.bbl)
+Underfull \vbox (badness 1205) has occurred while \output is active []
+
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+
+] (./hash-collision.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -364,16 +437,14 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-
+[2
 
 ] (./hash-collision.aux) ) 
 Here is how much of TeX's memory you used:
- 4141 strings out of 493054
- 64096 string characters out of 6140586
- 137220 words of memory out of 5000000
- 7640 multiletter control sequences out of 15000+600000
+ 4144 strings out of 493054
+ 64132 string characters out of 6140586
+ 141223 words of memory out of 5000000
+ 7643 multiletter control sequences out of 15000+600000
  33007 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,7n,32p,245b,236s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -381,10 +452,10 @@ Here is how much of TeX's memory you used:
 usr/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fo
 nts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/ut
 mr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on hash-collision.pdf (1 page, 48491 bytes).
+Output written on hash-collision.pdf (2 pages, 54771 bytes).
 PDF statistics:
- 25 PDF objects out of 1000 (max. 8388607)
- 17 compressed objects within 1 object stream
+ 28 PDF objects out of 1000 (max. 8388607)
+ 19 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
