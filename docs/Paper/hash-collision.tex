@@ -46,10 +46,10 @@ that f(a) = f(b) \cite{van1999parallel}.
 Message integrity is normally maintained via the protocol called “MAC" or Message Authentication Code. 
 To briefly explain its mechanism,
 
-No mundo digital, as tecnicas de transmissao e manutencao da integridade das mensagens estao em constante
-evolucao, visando alcancar protocolos mais eficientes e seguros. A seguranca de um protocolo pode ser ameacada
-por inumeros fatores diferentes, alguns possivelmente nem conhecidos ainda, e exige um tempo razoavel de 
-estudo, testes e ataques para ter a possibilidade de ser usado em aplicacoes reais.
+In the digital world, the techniques for transmission and integrity assurance of messages are in constant
+evolution, aiming more efficient and secure protocols. A protocol's security can be threatened by inumerous
+different ways, some possibly unknown yet, and requires a reasonable time of study, tests and attacks
+to be considered for use in real applications.
 
 O protocolo de autenticacao HMAC pode ser entendido em detalhes em \cite{krawczyk1997hmac}, mas como uma breve
 introducao, consideremos o seguinte exemplo: Alice deseja se comunicar com Bob, a integridade deve ser
@@ -60,8 +60,8 @@ mantida, ou seja, the message should not be tampered with or changed to contain 
 \item Using the same key, the algorithm will return 'yes' which shows that message integrity has been mantained \ldots
 \end{enumerate}
 
-Dessa forma, Bob eh capaz de identificar que a mensagem enviada por Alice nao foi comprometida e seu conteudo
-eh exatamente o que Alice escreveu.
+In that way, Bob is able to identify that the message sent by Alice was not compromised and its content
+is exactly what Alice had written.
 
 \subsection{Hash Collision}
 
