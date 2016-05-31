@@ -34,6 +34,20 @@ security, quality of context, Internet of things
 
 \section{Introduction}
 
+No mundo digital, as tecnicas de transmissao e manutencao da integridade das mensagens estao em constante
+evolucao, visando alcancar protocolos mais eficientes e seguros. A seguranca de um protocolo pode ser ameacada
+por inumeros fatores diferentes, muitos possivelmente nem conhecidos ainda, e exige um tempo razoavel de 
+estudo, testes e ataques para ter a possibilidade de ser usado em aplicacoes reais.
+
+O protocolo de autenticacao HMAC pode ser entendido em detalhes em \cite{krawczyk1997hmac}, mas como uma breve
+introducao, consideremos o seguinte exemplo: Alice deseja se comunicar com Bob, a integridade deve ser
+mantida, ou seja, the message should not be tampered with or changed to contain false or modified information:
+\begin{enumerate}
+\item Alice gera uma signing tag S(k, m), for m = message and k = secret key between Alice and Bob.
+\item Bob ao receber a mensagem, runs a verification algorithm, defined by V(k, m, tag) = V(k, m, S(k, m))
+\item Using the same key, the algorithm will return 'yes' which shows that message integrity has been mantained \ldots
+\end{enumerate}
+
 Before we begin discussing the Birthday Attack, we have to be aware that we have a goal of maintaining
 message integrity in computer security, i.e. the message that a person ‘A’ sends to another person ‘B’
 should not be tampered with or changed to contain false or modified information. Message integrity is
@@ -88,6 +102,9 @@ and that |M| >> 2\^n
 found we go back to step 1 and repeat with different message samples.
  
 \section{Experiments and Evaluation}
+
+Foram aplicados tecnicas de paralelismo (openmp) e distribuicao (mpi) visando uma mlehora na performance
+da busca por colisao. A funcao hash usada nos testes foi a MD5.
 
 \section{Conclusions and Future work}
 
