@@ -1,24 +1,29 @@
-\documentclass[letterpaper,conference]{IEEEtran}
+\documentclass[12pt]{article}
 
-\usepackage[margin=1.14in]{geometry}
+\usepackage{sbc-template}
+
 \usepackage{graphicx,url}
-\usepackage{amsthm}
-\usepackage{listings}
-\newtheorem{definition}{Definition}
 
+\usepackage[brazil]{babel}   
+%\usepackage[latin1]{inputenc}  
+\usepackage[utf8]{inputenc}  
+% UTF-8 encoding is recommended by ShareLaTex
 
+\usepackage{amsmath}
+\usepackage{amsfonts}
 
+\sloppy
+
+\title{Instructions for Authors of SBC Conferences\\ Papers and Abstracts}
+
+\author{Giovani Ferreira\inst{1}, Rafael\inst{1} }
+
+\address{Instituto de Informática -- Universidade Federal do Rio Grande do Sul
+  (UFRGS)\\
+  Caixa Postal 15.064 -- 91.501-970 -- Porto Alegre -- RS -- Brazil
+}
 
 \begin{document}
-
-\title{Context aware security approach for IoT environments}
-\author{\IEEEauthorblockN{Giovani Ferreira and Rafael}
-\IEEEauthorblockA{Universal Internet of Things (UIoT)\\ 
-Tecnology Faculty (FT)\\
-University of Brasília (UFSC)\\
-70910-900 – Brasília, DF – Brazil\\
-giovani.silva@redes.unb.br, caio.silva@redes.unb.br}
-}
 
 \maketitle
 
@@ -26,18 +31,12 @@ giovani.silva@redes.unb.br, caio.silva@redes.unb.br}
 adhaskjdhaksjd \cite{tanenbaum2002distributed}
 \end{abstract}
 
-\begin{IEEEkeywords}
-security, quality of context, Internet of things
-\end{IEEEkeywords}
-
-\IEEEpeerreviewmaketitle
-
 \section{Introduction}
 
 Collision search is an important tool in cryptanalysis. A broad range of cryptanalytic problems
 such as computing discrete logarithms, finding hash function collisions, and meet-in-the-middle
-attacks can be reduced to the problem of finding two distinct inputs, a and b, to a function f such
-that f(a) = f(b) \cite{van1999parallel}.
+attacks can be reduced to the problem of finding two distinct inputs, \(a\) and \(b\), to a 
+function \(f\) such that \(f(a) = f(b)\) \cite{van1999parallel}.
 
 \section{Related Concepts} 
 
@@ -48,16 +47,16 @@ To briefly explain its mechanism,
 
 In the digital world, the techniques for transmission and integrity assurance of messages are in constant
 evolution, aiming more efficient and secure protocols. A protocol's security can be threatened by inumerous
-different ways, alguns possivelmente nem conhecidos ainda, e exige um tempo razoavel de 
-estudo, testes e ataques para ter a possibilidade de ser usado em aplicacoes reais.
+different ways, some possibly unknown yet, and requires a reasonable time of study, tests and attacks
+to be considered for use in real applications.
 
 O protocolo de autenticacao HMAC pode ser entendido em detalhes em \cite{krawczyk1997hmac}, mas como uma breve
 introducao, consideremos o seguinte exemplo: Alice deseja se comunicar com Bob, a integridade deve ser
 mantida, ou seja, the message should not be tampered with or changed to contain false or modified information:
 \begin{enumerate}
-\item Alice gera uma signing tag S(k, m), for m = message and k = secret key between Alice and Bob.
-\item Bob ao receber a mensagem, runs a verification algorithm, defined by V(k, m, tag) = V(k, m, S(k, m))
-\item Using the same key, the algorithm will return 'yes' which shows that message integrity has been mantained \ldots
+\item Alice gera uma signing tag \(S(k, m)\), for \(m\) = message and \(k\) = secret key between Alice and Bob
+\item Bob ao receber a mensagem, runs a verification algorithm, defined by \(V(k, m, tag) = V(k, m, S(k, m))\)
+\item Using the same key, the algorithm will return \(yes\) which shows that message integrity has been mantained
 \end{enumerate}
 
 In that way, Bob is able to identify that the message sent by Alice was not compromised and its content
@@ -66,7 +65,7 @@ is exactly what Alice had written.
 \subsection{Hash Collision}
 
 Hash functions are designed to take a message of arbitrary bitlength and map it to a fixed size
-output called a hash result. Let H: M → R be such a hash function. Typically, hash functions are
+output called a hash result. Let \(H : \mathbb{M} \to \mathbb{R}\) be such a hash function. Typically, hash functions are
 constructed from a function h: B×R → R which takes a fixed size block of message bits together
 with an intermediate hash result and produces a new intermediate hash result. A given message
 m ∈ M is typically padded to a multiple of the block size and split into blocks m 1 , ... m l ∈ B. The
@@ -77,22 +76,25 @@ r l is the hash result for message m \cite{van1999parallel}.
 \subsection{Birthday Attack}
 
 The birthday paradox is the counter-intuitive principle that for
-groups of as few as 23 persons there is already a chance of about one half of finding two 
+groups of as few as \(23\) persons there is already a chance of about one half of finding two 
 persons with the same birthday (assuming all birthdays are equally likely and disregarding 
 leap years). Compared to finding someone in this group with your birthday where you have 
-23 independent chances and thus a success probability of 23/365 ≈ 0.06, this principle is 
-based on the fact that there are (23 * 22)/2 = 253 distinct pairs of persons. This leads to 
-a success probability of about 0.5 (note that this does not equal 253/365 ≈ 0.7 since these 
+\(23\) independent chances and thus a success probability of \(\frac{23}{365} \approx 0.06\), this principle is 
+based on the fact that there are \(\frac{23 * 22}{2} = 253\) distinct pairs of persons. This leads to 
+a success probability of about \(0.5\) (note that this does not equal \(\frac{253}{365} \approx 0.7\) since these 
 pairs are not independently distributed) \cite{stevens2012attacks}.
 
 The following is the general algorithm for the Birthday Attack and in the next section I will discuss
 the Birthday Paradox, which is a problem that gave birth to the Birthday Attack algorithm.
-1 - Let H:M -> {0,1}\^n be a hash function. From this we know that the size of the tag space is ≈ 2\^n bits
-and that |M| >> 2\^n
-2 - We choose 2\^(n/2) random messages in M, i.e. m1, m2, ... , m2(n/2) pertencentes a M.
-3 - For i = 1,2, ... , 2(n/2) compute ti = H(mi), where ti is the hash value in the tag space.
-4 - We then search for any collisions, i.e. ti = tj for i, j pertencentes {1, 2, ... , 2\^(n/2)}. It this is not
+\begin{enumerate}
+\item Let \(H : M \to \{0,1\}^n\) be a hash function. From this we know that the size of the tag space is \(\approx 2^n\) bits
+and that \(| M | \gg 2^n\)
+\item We choose \(2^\frac{n}{2}\) random messages in \(\mathbb{M}\), i.e. \(m_1, m_2, ... , m_2^\frac{n}{2}\) 
+pertencentes a \(\mathbb{M}\).
+\item For \(i = 1,2, ... , 2\frac{n}{2}\) compute \(t_i = H(m_i)\), where \(t_i\) is the hash value in the tag space.
+\item We then search for any collisions, i.e. \(t_i = t_j\) for \(i, j \in {1, 2, ... , 2^\frac{n}{2}}\). If this is not
 found we go back to step 1 and repeat with different message samples.
+\end{enumerate}
 
 \subsection{Se pa - Distributed System}
 A distributed system is a collection of independent computers that appears to its users as a single 
@@ -105,7 +107,7 @@ da busca por colisao. A funcao hash usada nos testes foi a MD5.
 
 \section{Conclusions and Future work}
 
-\bibliographystyle{IEEEtran}
+\bibliographystyle{sbc}
 \bibliography{hash-collision}
 
 \end{document}
