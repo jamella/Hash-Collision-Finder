@@ -23,7 +23,7 @@
 }
 
 \begin{document}
-\[\maketitle
+\[\[\maketitle
 
 \begin{abstract}
 adhaskjdhaksjd \cite{tanenbaum2002distributed}
@@ -31,13 +31,36 @@ adhaskjdhaksjd \cite{tanenbaum2002distributed}
 
 \section{Introduction}
 
-Apesar de tecnicas para evitar o ataque do aniversario ja terem sido criadas \cite{aiello1996foiling}.
+Apesar de técnicas para evitar o ataque do aniversario ja terem sido criadas \cite{aiello1996foiling}.
 
-Collision search is an important tool in cryptanalysis. A broad range of cryptanalytic problems
-such as computing discrete logarithms, finding hash function collisions, and meet-in-the-middle
-attacks can be reduced to the problem of finding two distinct inputs, \(a\) and \(b\), to a 
-function \(f\) such that \(f(a) = f(b)\) \cite{van1999parallel}.
+Busca por colisão é uma ferramenta importante em criptoanálise. Uma gama grande de problemas criptoanalíticos
+tais como computar logaritmos discretos, achar colisões de função hash e o ataque por encontro a médio caminho,
+meet-in-the-middle, pode ser reduzido ao problema de achar duas entradas distintas, \(a\) e \(b\), para uma
+função \(f\) de forma que \(f(a) = f(b)\) \cite{van1999parallel}.
 
+%Collision search is an important tool in cryptanalysis. A broad range of cryptanalytic problems
+%such as computing discrete logarithms, finding hash function collisions, and meet-in-the-middle
+%attacks can be reduced to the problem of finding two distinct inputs, \(a\) and \(b\), to a 
+%function \(f\) such that \(f(a) = f(b)\) \cite{van1999parallel}.
+
+As formas mais comuns de uso de função hash na criptografia são com assinaturas digitais e para
+integridade dos dados. Na assinatura digital, uma mensagem longa geralmente passa pelo processo
+de hash (usando uma função hash publicamente disponível) e somente o resultado do hash é assinado.
+A parte destinatária da mensagem aplica o processo de hash na mensagem, verifica que a assinatura
+recebida é correta para esse valor de hash. Isso salva tanto tempo quanto espaço comparado com 
+assinar a mensagem diretamente, o que iria tipicamente envolver dividir a mensagem em blocos de
+tamanho apropriado e assinar cada bloco individualmente. Note aqui que a inabilidade de achar duas
+mensagens com o mesmo valor de hash é um necessidade de segurança, visto que de outra maneira, a
+assinatura em um valor hash de uma mensagem seria o mesmo que o de outra, permitindo que o assinante
+assine uma mensagem e em um outro ponto no tempo, reivindicar que ele assinou outra \cite{menezes1996handbook}.
+Funções hash podem ser usadas para manter a integridade da seguinte maneira. O valor do hash correspondente
+a uma entrada particular é computado em algum ponto do tempo. A integridade desse valor hash é protegido
+de alguma maneira. Em um ponto subsequente no tempo, para verificar que o dado de entrada não foi
+alterado, o valor do hash é computado novamente usando a entrada disponível e comparado por igualdade
+com o valor do hash original. Aplicações específicas incluem proteção contra vírus e distribuição de
+software \cite{menezes1996handbook}.
+
+\iffalse
 The most common cryptographic uses of hash functions are with digital signatures and
 for data integrity.  With digital signatures, a long message is usually hashed (using a publicly 
 available hash function) and only the hash-value is signed.  The party receiving the
@@ -53,6 +76,7 @@ input is computed at some point in time. The integrity of this hash-value is pro
 At a subsequent point in time, to verify that the input data has not been altered, the hash-value is 
 recomputed using the input at hand, and compared for equality with the original hash-value. Specific 
 applications include virus protection and software distribution \cite{menezes1996handbook}.
+\fi
 
 \section{Related Concepts} 
 
@@ -83,8 +107,11 @@ is exactly what Alice had written.
 
 \subsection{Hash Functions}
 
-A hash function is a computationally efficient function mapping binary strings of arbitrary length 
-to binary strings of some fixed length, called hash-values \cite{menezes1996handbook}.
+Uma função hash é a função computacionalmente eficiente que mapeia uma sequência binária de tamanho 
+arbitrário para uma sequência binária de tamanho fixo, chamada de hash-value, hash ou digest \cite{menezes1996handbook}. 
+
+%A hash function is a computationally efficient function mapping binary strings of arbitrary length 
+%to binary strings of some fixed length, called hash-values \cite{menezes1996handbook}.
 
 \subsection{Hash Collision}
 
@@ -154,5 +181,5 @@ da busca por colisao. A funcao hash usada nos testes foi a MD5.
 \bibliographystyle{sbc}
 \bibliography{hash-collision}
 
-\]
+\]\]
 \end{document}
