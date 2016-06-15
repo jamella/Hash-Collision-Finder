@@ -109,6 +109,16 @@ number of bits in the original message. Beginning with some constant \(r_0 \in \
 
 \subsection{Birthday Paradox}
 
+O paradoxo do aniversário é o princípio contraintuitivo que para grupos de somente 23 pessoas, existe a 
+chance de aproximadamente 50\% de encontrar duas pessoas com o mesmo aniversário (Assumindo que
+todos os aniversários são igualmente prováveis e desconsiderado anos bissexto). Comparado a probabilidade
+de encontrar alguém nesse grupo com o mesmo aniversário que o seu, aonde se têm \(23\) chances independentes
+e portanto uma probabilidade de sucesso de \(\frac{23}{365} \approx 0.06\), esse princípio é baseado
+no fato de que existe \(\frac{23 * 22}{2} = 253\) pares distintos de pessoas. Isso leva a uma probabilidade
+de sucesso por volta de \(0.5\) (note que isso não é igual a \(\frac{253}{365} \approx 0.7\) já que esses
+pares não são independentemente distribuídos) \cite{stevens2012attacks}.
+
+\iffalse
 The birthday paradox is the counter-intuitive principle that for
 groups of as few as \(23\) persons there is already a chance of about one half of finding two 
 persons with the same birthday (assuming all birthdays are equally likely and disregarding 
@@ -117,6 +127,7 @@ leap years). Compared to finding someone in this group with your birthday where 
 based on the fact that there are \(\frac{23 * 22}{2} = 253\) distinct pairs of persons. This leads to 
 a success probability of about \(0.5\) (note that this does not equal \(\frac{253}{365} \approx 0.7\) since these 
 pairs are not independently distributed) \cite{stevens2012attacks}.
+\fi
 
 \subsection{Birthday Attack}
 
