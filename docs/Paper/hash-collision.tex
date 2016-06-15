@@ -23,8 +23,7 @@
 }
 
 \begin{document}
-
-\maketitle
+\[\maketitle
 
 \begin{abstract}
 adhaskjdhaksjd \cite{tanenbaum2002distributed}
@@ -121,15 +120,13 @@ pairs are not independently distributed) \cite{stevens2012attacks}.
 
 \subsection{Birthday Attack}
 
-The following is the general algorithm for the Birthday Attack and in the next section I will discuss
-the Birthday Paradox, which is a problem that gave birth to the Birthday Attack algorithm.
+O algoritmo genérico para o ataque do aniversario é composto pelas seguintes etapas:
 \begin{enumerate}
-\item Let \(H : M \to \{0,1\}^n\) be a hash function. From this we know that the size of the tag space is \(\approx 2^n\) bits
-and that \(| M | \gg 2^n\)
-\item We choose \(2^\frac{n}{2}\) random messages in \(\mathbb{M}\), i.e. \(m_1, m_2, ... , m_{2^\frac{n}{2}} \in \mathbb{M}\).
-\item For \(i = 1,2, ... , 2\frac{n}{2}\) compute \(t_i = H(m_i)\), where \(t_i\) is the hash value in the tag space.
-\item We then search for any collisions, i.e. \(t_i = t_j\) for \(i, j \in {1, 2, ... , 2^\frac{n}{2}}\). If this is not
-found we go back to step 1 and repeat with different message samples.
+\item Dada a função hash \(H : M \to \{0,1\}^n\) e sabendo que o tamanho do conjunto das \(tags\) é \(\approx 2^n\) bits e que \(| M | \gg 2^n\)
+\item Escolhe-se \(2^\frac{n}{2}\) mensagens aleatórias em \(\mathbb{M}\), de forma que \(m_1, m_2, ... , m_{2^\frac{n}{2}} \in \mathbb{M}\).
+\item Para \(i = 1,2, ... , 2\frac{n}{2}\) computa-se \(t_i = H(m_i)\), aonde \(t_i\) é o hash no conjunto das \(tags\) % is the hash value in the tag space.
+\item Busca-se por qualquer colisão, ou seja, \(t_i = t_j\) para \(i, j \in {1, 2, ... , 2^\frac{n}{2}}\). Caso não seja encontrada, volta-se a etapa 1 e 
+repete-se com uma amostra diferente de mensagens.
 \end{enumerate}
 
 \subsection{Se pa - Distributed System}
@@ -146,6 +143,5 @@ da busca por colisao. A funcao hash usada nos testes foi a MD5.
 \bibliographystyle{sbc}
 \bibliography{hash-collision}
 
+\]
 \end{document}
-
-
