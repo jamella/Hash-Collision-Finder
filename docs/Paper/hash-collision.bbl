@@ -1,8 +1,21 @@
 \begin{thebibliography}{}
 
-\bibitem[Krawczyk et~al. 1997]{krawczyk1997hmac}
-Krawczyk, H., Canetti, R., and Bellare, M. (1997).
-\newblock Hmac: Keyed-hashing for message authentication.
+\bibitem[Aiello and Venkatesan 1996]{aiello1996foiling}
+Aiello, W. and Venkatesan, R. (1996).
+\newblock Foiling birthday attacks in length-doubling transformations.
+\newblock In {\em Advances in Cryptology—EUROCRYPT’96}, pages 307--320.
+  Springer.
+
+\bibitem[Damg{\aa}rd 1989]{damgaard1989design}
+Damg{\aa}rd, I.~B. (1989).
+\newblock A design principle for hash functions.
+\newblock In {\em Advances in Cryptology—CRYPTO’89 Proceedings}, pages
+  416--427. Springer.
+
+\bibitem[Menezes et~al. 1996]{menezes1996handbook}
+Menezes, A.~J., Van~Oorschot, P.~C., and Vanstone, S.~A. (1996).
+\newblock {\em Handbook of applied cryptography}.
+\newblock CRC press.
 
 \bibitem[Stevens et~al. 2012]{stevens2012attacks}
 Stevens, M. M.~J. et~al. (2012).

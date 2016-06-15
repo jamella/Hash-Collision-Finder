@@ -32,13 +32,32 @@ adhaskjdhaksjd \cite{tanenbaum2002distributed}
 
 \section{Introduction}
 
+Apesar de tecnicas para evitar o ataque do aniversario ja terem sido criadas \cite{aiello1996foiling}.
+
 Collision search is an important tool in cryptanalysis. A broad range of cryptanalytic problems
 such as computing discrete logarithms, finding hash function collisions, and meet-in-the-middle
 attacks can be reduced to the problem of finding two distinct inputs, \(a\) and \(b\), to a 
 function \(f\) such that \(f(a) = f(b)\) \cite{van1999parallel}.
 
+The most common cryptographic uses of hash functions are with digital signatures and
+for data integrity.  With digital signatures, a long message is usually hashed (using a publicly 
+available hash function) and only the hash-value is signed.  The party receiving the
+message then hashes the received message, and verifies that the received signature is correct 
+for this hash-value. This saves both time and space compared to signing the message
+directly, which would typically involve splitting the message into appropriate-sized blocks
+and signing each block individually. Note here that the inability to find two messages with
+the same hash-value is a security requirement, since otherwise, the signature on one mes-
+sage hash-value would be the same as that on another, allowing a signer to sign one message
+and at a later point in time claim to have signed another \cite{menezes1996handbook}.
+Hash functions may be used for data integrity as follows. The hash-value corresponding to a particular 
+input is computed at some point in time. The integrity of this hash-value is protected in some manner. 
+At a subsequent point in time, to verify that the input data has not been altered, the hash-value is 
+recomputed using the input at hand, and compared for equality with the original hash-value. Specific 
+applications include virus protection and software distribution \cite{menezes1996handbook}.
+
 \section{Related Concepts} 
 
+\iffalse
 \subsection{Message Integrity}
 
 Message integrity is normally maintained via the protocol called “MAC" or Message Authentication Code. 
@@ -61,7 +80,23 @@ mantida, ou seja, the message should not be tampered with or changed to contain 
 In that way, Bob is able to identify that the message sent by Alice was not compromised and its content
 is exactly what Alice had written.
 
+\fi
+
+\subsection{Hash Functions}
+
+A hash function is a computationally efficient function mapping binary strings of arbitrary length 
+to binary strings of some fixed length, called hash-values \cite{menezes1996handbook}.
+
 \subsection{Hash Collision}
+
+Collision Resistance - It is computationally infeasible to find any two distinct input \(x, x'\) 
+which hash to the same output, i.e., such that \(h(x) = h(x')\). (Note that here there is free 
+choice of both inputs.) \cite{menezes1996handbook}
+
+A hash function \(h\) is called \(collision free\), if it maps messages of any length to strings of
+some fixed length, but such that finding \(x\), \(y\) with \(h(x) = h(y)\) is a hard problem. Note 
+that we are concentrating here on publicly computable hash functions, i.e. functions that are not
+controlled by a secret key \cite{damgaard1989design}.
 
 Hash functions are designed to take a message of arbitrary bitlength and map it to a fixed size
 output called a hash result. Let \(H : M \to R\) be such a hash function. Typically, 
@@ -73,7 +108,7 @@ number of bits in the original message. Beginning with some constant \(r_0 \in \
 \(r_i = h(m_i, r_{i-1})\) is computed for \(i = 1, 2, ... , l\), and \(r_l\) is the hash result for message 
 \(m\) \cite{van1999parallel}.
 
-\subsection{Birthday Attack}
+\subsection{Birthday Paradox}
 
 The birthday paradox is the counter-intuitive principle that for
 groups of as few as \(23\) persons there is already a chance of about one half of finding two 
@@ -83,6 +118,8 @@ leap years). Compared to finding someone in this group with your birthday where 
 based on the fact that there are \(\frac{23 * 22}{2} = 253\) distinct pairs of persons. This leads to 
 a success probability of about \(0.5\) (note that this does not equal \(\frac{253}{365} \approx 0.7\) since these 
 pairs are not independently distributed) \cite{stevens2012attacks}.
+
+\subsection{Birthday Attack}
 
 The following is the general algorithm for the Birthday Attack and in the next section I will discuss
 the Birthday Paradox, which is a problem that gave birth to the Birthday Attack algorithm.

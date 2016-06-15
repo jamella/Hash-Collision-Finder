@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2016.2.16)  15 JUN 2016 08:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2016.2.16)  15 JUN 2016 11:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -558,45 +558,39 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <13> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 33.
 
-Underfull \hbox (badness 1655) in paragraph at lines 52--55
-[]\OT1/ptm/m/n/12 O pro-to-colo de au-ten-ti-ca-cao HMAC pode ser en-ten-dido e
-m de-ta-lhes em
- []
-
-
-Underfull \hbox (badness 2726) in paragraph at lines 57--58
-[]\OT1/ptm/m/n/12 Bob ao re-ce-ber a men-sa-gem, runs a ve-ri-fi-ca-tion al-go-
-rithm, de-fi-ned by
+Underfull \hbox (badness 2980) in paragraph at lines 35--36
+\OT1/ptm/m/n/12 Apesar de tec-ni-cas para evi-tar o ata-que do ani-ver-sa-rio j
+a te-rem sido cri-a-das
  []
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./hash-collision.bbl)
-[2] (./hash-collision.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./hash-collision.bbl
+[2]) [3] (./hash-collision.aux) ) 
 Here is how much of TeX's memory you used:
- 3872 strings out of 493054
- 50517 string characters out of 6140586
- 130678 words of memory out of 5000000
- 7306 multiletter control sequences out of 15000+600000
+ 3869 strings out of 493054
+ 50487 string characters out of 6140586
+ 131724 words of memory out of 5000000
+ 7303 multiletter control sequences out of 15000+600000
  19075 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,8n,28p,240b,219s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.
-pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public
-/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmb8
-a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texm
-f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/
-times/utmri8a.pfb>
-Output written on hash-collision.pdf (2 pages, 128191 bytes).
+{/usr/share/texmf-dist/fonts/enc/dvips/base/8r
+.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/sha
+re/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/s
+hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/p
+ublic/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/urw/times/
+utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share
+/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1
+/urw/times/utmri8a.pfb>
+Output written on hash-collision.pdf (3 pages, 130966 bytes).
 PDF statistics:
- 64 PDF objects out of 1000 (max. 8388607)
- 46 compressed objects within 1 object stream
+ 67 PDF objects out of 1000 (max. 8388607)
+ 48 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
