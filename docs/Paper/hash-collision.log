@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2016.2.16)  15 JUN 2016 11:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Arch Linux) (preloaded format=pdflatex 2016.2.16)  16 JUN 2016 19:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -540,26 +540,26 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <16> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 27.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 26.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 27.
-LaTeX Font Info:    Try loading font information for U+msa on input line 27.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 26.
+LaTeX Font Info:    Try loading font information for U+msa on input line 26.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 27.
+LaTeX Font Info:    Try loading font information for U+msb on input line 26.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 29.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 28.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <13> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 33.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 32.
 
-Underfull \hbox (badness 2980) in paragraph at lines 35--36
-\OT1/ptm/m/n/12 Apesar de tec-ni-cas para evi-tar o ata-que do ani-ver-sa-rio j
+Underfull \hbox (badness 2980) in paragraph at lines 34--35
+\OT1/ptm/m/n/12 Apesar de t[]ecnicas para evi-tar o ata-que do ani-ver-sa-rio j
 a te-rem sido cri-a-das
  []
 
@@ -568,10 +568,10 @@ a te-rem sido cri-a-das
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./hash-collision.bbl
 [2]) [3] (./hash-collision.aux) ) 
 Here is how much of TeX's memory you used:
- 3869 strings out of 493054
- 50487 string characters out of 6140586
- 131724 words of memory out of 5000000
- 7303 multiletter control sequences out of 15000+600000
+ 3871 strings out of 493054
+ 50503 string characters out of 6140586
+ 132724 words of memory out of 5000000
+ 7305 multiletter control sequences out of 15000+600000
  19075 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,8n,28p,240b,219s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -587,7 +587,7 @@ ublic/amsfonts/symbols/msbm10.pfb></usr/share/texmf-dist/fonts/type1/urw/times/
 utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share
 /texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1
 /urw/times/utmri8a.pfb>
-Output written on hash-collision.pdf (3 pages, 130966 bytes).
+Output written on hash-collision.pdf (3 pages, 133243 bytes).
 PDF statistics:
  67 PDF objects out of 1000 (max. 8388607)
  48 compressed objects within 1 object stream
