@@ -23,7 +23,7 @@
 }
 
 \begin{document}
-\[\[\maketitle
+\[\[\[\maketitle
 
 \begin{abstract}
 adhaskjdhaksjd \cite{tanenbaum2002distributed}
@@ -115,24 +115,43 @@ arbitrário para uma sequência binária de tamanho fixo, chamada de hash-value,
 
 \subsection{Hash Collision}
 
-Collision Resistance - It is computationally infeasible to find any two distinct input \(x, x'\) 
-which hash to the same output, i.e., such that \(h(x) = h(x')\). (Note that here there is free 
-choice of both inputs.) \cite{menezes1996handbook}
+Resistência a colisão - Ou seja, é computacionalmente inviável achar duas entradas distintas \(x, x'\)
+que tenham o mesmo valor hash, isso é \(h(x) = h(x')\). (Note que aqui existe uma escolha livre de 
+ambas as entradas) \cite{menezes1996handbook}.
 
-A hash function \(h\) is called \(collision free\), if it maps messages of any length to strings of
-some fixed length, but such that finding \(x\), \(y\) with \(h(x) = h(y)\) is a hard problem. Note 
-that we are concentrating here on publicly computable hash functions, i.e. functions that are not
-controlled by a secret key \cite{damgaard1989design}.
+%Collision Resistance - It is computationally infeasible to find any two distinct input \(x, x'\) 
+%which hash to the same output, i.e., such that \(h(x) = h(x')\). (Note that here there is free 
+%choice of both inputs.) \cite{menezes1996handbook}
 
-Hash functions are designed to take a message of arbitrary bitlength and map it to a fixed size
-output called a hash result. Let \(H : M \to R\) be such a hash function. Typically, 
-hash functions are constructed from a function \(h: B \times R \to R\) which takes a fixed size block 
-of message bits together with an intermediate hash result and produces a new intermediate hash result. 
-A given message \(m \in \mathbb{M}\) is typically padded to a multiple of the block size and split 
-into blocks \(m_1, m_2, ... , m_l \in B\). The padding often includes a field which indicates the 
-number of bits in the original message. Beginning with some constant \(r_0 \in \mathbb{R}\), the sequence 
-\(r_i = h(m_i, r_{i-1})\) is computed for \(i = 1, 2, ... , l\), and \(r_l\) is the hash result for message 
-\(m\) \cite{van1999parallel}.
+Uma função hash \(h\) é chamada de \(livre de colisão\) (\(collision free\)) se ela mapeia mensagens
+de qualquer tamanho para strings de tamanho definido, mas achar \(x, y\) que \(h(x) = h(y)\) é um
+problema difícil. Note que estamos concentrando em funções de computação pública, ou seja, funções
+que não são controladas por uma chave secreta \cite{damgaard1989design}.
+
+%A hash function \(h\) is called \(collision free\), if it maps messages of any length to strings of
+%some fixed length, but such that finding \(x\), \(y\) with \(h(x) = h(y)\) is a hard problem. Note 
+%that we are concentrating here on publicly computable hash functions, i.e. functions that are not
+%controlled by a secret key \cite{damgaard1989design}.
+
+Funções hash são projetadas para receber uma mensagem de tamanho arbitrário e mapear ela para uma 
+saída de tamanho definido chamado valor hash. Seja \(H : M \to R\) uma dessas funções hash. Tipicamente,
+funções hash são construídas a partir de uma função \(h: B \times R \to R\) que recebe um bloco de tamanho
+fixo de uma mensagem junto com um valor hash intermediário e produz um novo valor hash intermediário. Uma
+mensagem recebida \(m \in \mathbb{M}\) é tipicamente completada para ter um tamanho que seja múltiplo do
+tamanho do bloco e quebrado em blocos \(m_1, m_2, ... , m_l \in B\). Esse complemento geralmente inclui um
+campo que indica o numero de bits na mensagem original. Começando com alguma constante \(r_0 \in \mathbb{R}\),
+a sequência \(r_i = h(m_i, r_{i-1})\) é computada para \(i = 1, 2, ... , l\) e \(r_l\) é o resultado do hash
+para a mensagem \(m\) \cite{van1999parallel}.
+
+%Hash functions are designed to take a message of arbitrary bitlength and map it to a fixed size
+%output called a hash result. Let \(H : M \to R\) be such a hash function. Typically, 
+%hash functions are constructed from a function \(h: B \times R \to R\) which takes a fixed size block 
+%of message bits together with an intermediate hash result and produces a new intermediate hash result. 
+%A given message \(m \in \mathbb{M}\) is typically padded to a multiple of the block size and split 
+%into blocks \(m_1, m_2, ... , m_l \in B\). The padding often includes a field which indicates the 
+%number of bits in the original message. Beginning with some constant \(r_0 \in \mathbb{R}\), the sequence 
+%\(r_i = h(m_i, r_{i-1})\) is computed for \(i = 1, 2, ... , l\), and \(r_l\) is the hash result for message 
+%\(m\) \cite{van1999parallel}.
 
 \subsection{Birthday Paradox}
 
@@ -182,4 +201,5 @@ da busca por colisao. A funcao hash usada nos testes foi a MD5.
 \bibliography{hash-collision}
 
 \]\]
+\]
 \end{document}
