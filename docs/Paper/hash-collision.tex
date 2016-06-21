@@ -66,7 +66,7 @@ Apesar de técnicas para prevenir ataques baseados no paradoxo do aniversário j
 é interessante discutir o ataque do aniversário já que é possível observar como simples ideias matemáticas em conjunto
 com um cluster de microprocessadores de baixo custo podem ser aplicadas e usadas como forma de ataque cibernético.
 
-Dessa forma, este artigo consiste de X seções. A segunda tratará da explicação e definição de conceitos relacionados, como função
+Dessa forma, este artigo consiste de cinco seções. A segunda tratará da explicação e definição de conceitos relacionados, como função
 hash e colisão de valores hash. A terceira consistirá em detalhar e abordar a implementação do cluster de raspberry e dos testes
 serial, paralelo e distribuído. A quarta seção irá expor os resultados obtidos a partir dos testes e a quinta seção dissertará
 sobre as conclusões obtidas através dos testes.
@@ -133,6 +133,12 @@ Uma função hash é uma função computacionalmente eficiente \(f\) que mapeia 
 para uma sequência binária de tamanho fixo \({0, 1}^x\), chamada de valor hash, hash ou digest \cite{menezes1996handbook}. Ou seja, 
 \(f : {0, 1}^n \to {0, 1}^x\) para \(n \gg x\) e \(x\) igual a um valor fixo como 128, 160, 256 e 512.
 
+Tipicamente, funções hash são construídas a partir de uma função \(h: B \times R \to R\), que recebe um bloco de tamanho fixo de uma 
+mensagem junto com um valor hash intermediário e produz um novo valor hash intermediário. Uma mensagem recebida \(m \in {0, 1}^n\) 
+é tipicamente completada para ter um comprimento que seja múltiplo do tamanho do bloco. Em sequência é quebrada em blocos \(m_1, 
+m_2, ... , m_l \in B\) e começando com alguma constante \(r_0 \in \mathbb{R}\), a sequência \(r_i = h(m_i, r_{i-1})\) é computada 
+para \(i = 1, 2, ... , l\) e \(r_l\) é o resultado do hash para a mensagem \(m\) \cite{van1999parallel}.
+
 \subsection{Hash Collision}
 
 Resistência a colisão - Ou seja, é computacionalmente inviável achar duas entradas distintas \(x, x'\)
@@ -144,7 +150,7 @@ ambas as entradas) \cite{menezes1996handbook}.
 %choice of both inputs.) \cite{menezes1996handbook}
 
 Uma função hash \(h\) é chamada de livre de colisão (\(collision\ free\)) se ela mapeia mensagens
-de qualquer tamanho para strings de tamanho definido, mas achar \(x, y\) que \(h(x) = h(y)\) é um
+de qualquer tamanho para strings de tamanho definido, mas achar \(x, y | h(x) = h(y)\) é um
 problema difícil. Note que estamos concentrando em funções de computação pública, ou seja, funções
 que não são controladas por uma chave secreta \cite{damgaard1989design}.
 
@@ -154,14 +160,7 @@ que não são controladas por uma chave secreta \cite{damgaard1989design}.
 %controlled by a secret key \cite{damgaard1989design}.
 
 Funções hash são projetadas para receber uma mensagem de tamanho arbitrário e mapear ela para uma 
-saída de tamanho definido chamado valor hash. Seja \(H : M \to R\) uma dessas funções hash. Tipicamente,
-funções hash são construídas a partir de uma função \(h: B \times R \to R\) que recebe um bloco de tamanho
-fixo de uma mensagem junto com um valor hash intermediário e produz um novo valor hash intermediário. Uma
-mensagem recebida \(m \in \mathbb{M}\) é tipicamente completada para ter um tamanho que seja múltiplo do
-tamanho do bloco e quebrado em blocos \(m_1, m_2, ... , m_l \in B\). Esse complemento geralmente inclui um
-campo que indica o numero de bits na mensagem original. Começando com alguma constante \(r_0 \in \mathbb{R}\),
-a sequência \(r_i = h(m_i, r_{i-1})\) é computada para \(i = 1, 2, ... , l\) e \(r_l\) é o resultado do hash
-para a mensagem \(m\) \cite{van1999parallel}.
+saída de tamanho definido chamado valor hash. Seja \(H : M \to R\) uma dessas funções hash. 
 
 %Hash functions are designed to take a message of arbitrary bitlength and map it to a fixed size
 %output called a hash result. Let \(H : M \to R\) be such a hash function. Typically, 
@@ -221,5 +220,6 @@ da busca por colisao. A funcao hash usada nos testes foi a MD5.
 \bibliography{hash-collision}
 
 
+\]
 \]
 \end{document}
