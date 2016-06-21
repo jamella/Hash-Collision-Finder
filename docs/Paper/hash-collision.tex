@@ -102,6 +102,87 @@ applications include virus protection and software distribution \cite{menezes199
 
 \section{Conceitos Relacionados} 
 
+\subsection{Função Hash}
+
+Uma função hash é uma função computacionalmente eficiente \(f\) que mapeia uma sequência binária de tamanho 
+arbitrário \(\{0, 1\}^n\) para uma sequência binária de tamanho fixo \(\{0, 1\}^x\), chamada de valor hash, hash 
+ou digest \cite{menezes1996handbook}. Ou seja, \(f : \{0, 1\}^n \to \{0, 1\}^x\) para \(n \gg x\) e \(x\) igual a 
+um valor fixo como \(128, 160, 256\) e \(512\).
+
+Tipicamente, funções hash são construídas a partir de uma função \(h: B \times R \to R\), que recebe um bloco 
+de tamanho fixo de uma mensagem junto com um valor hash intermediário e produz um novo valor hash intermediário. 
+Uma mensagem recebida \(m \in \{0, 1\}^n\) é tipicamente completada para ter um comprimento que seja múltiplo do 
+tamanho do bloco. Em sequência é quebrada em blocos \(m_1, m_2, ... , m_k \in B\) e começando com alguma constante 
+\(r_0 \in \mathbb{R}\), a sequência \(r_i = h(m_i, r_{i-1})\) é computada para \(i = 1, 2, ... , k\) e \(r_k\) é 
+o resultado do hash para a mensagem \(m\) \cite{van1999parallel}.
+
+\subsection{Colisão Hash}
+
+Uma função hash \(h\) é chamada de livre de colisão (\(collision\ free\)) se ela mapeia mensagens
+de qualquer tamanho para strings de tamanho definido, mas achar \(x, y\ |\ h(x) = h(y)\) é um
+problema difícil. Note que estamos concentrando em funções de computação pública, ou seja, funções
+que não são controladas por uma chave secreta \cite{damgaard1989design}.
+
+Resistência a colisão - Ou seja, é computacionalmente inviável achar duas entradas distintas \(x, x'\)
+que tenham o mesmo valor hash, isso é \(h(x) = h(x')\). (Note que aqui existe uma escolha livre de 
+ambas as entradas) \cite{menezes1996handbook}.
+
+%Collision Resistance - It is computationally infeasible to find any two distinct input \(x, x'\) 
+%which hash to the same output, i.e., such that \(h(x) = h(x')\). (Note that here there is free 
+%choice of both inputs.) \cite{menezes1996handbook}
+
+
+
+%A hash function \(h\) is called \(collision free\), if it maps messages of any length to strings of
+%some fixed length, but such that finding \(x\), \(y\) with \(h(x) = h(y)\) is a hard problem. Note 
+%that we are concentrating here on publicly computable hash functions, i.e. functions that are not
+%controlled by a secret key \cite{damgaard1989design}.
+
+Funções hash são projetadas para receber uma mensagem de tamanho arbitrário e mapear ela para uma 
+saída de tamanho definido chamado valor hash. Seja \(H : M \to R\) uma dessas funções hash. 
+
+%Hash functions are designed to take a message of arbitrary bitlength and map it to a fixed size
+%output called a hash result. Let \(H : M \to R\) be such a hash function. Typically, 
+%hash functions are constructed from a function \(h: B \times R \to R\) which takes a fixed size block 
+%of message bits together with an intermediate hash result and produces a new intermediate hash result. 
+%A given message \(m \in \mathbb{M}\) is typically padded to a multiple of the block size and split 
+%into blocks \(m_1, m_2, ... , m_l \in B\). The padding often includes a field which indicates the 
+%number of bits in the original message. Beginning with some constant \(r_0 \in \mathbb{R}\), the sequence 
+%\(r_i = h(m_i, r_{i-1})\) is computed for \(i = 1, 2, ... , l\), and \(r_l\) is the hash result for message 
+%\(m\) \cite{van1999parallel}.
+
+\subsection{Paradoxo do Aniversário}
+
+O paradoxo do aniversário é o princípio contraintuitivo que para grupos de somente \(23\) pessoas, existe a 
+chance de aproximadamente \(50\%\) de encontrar duas pessoas com o mesmo aniversário (Assumindo que
+todos os aniversários são igualmente prováveis e desconsiderado anos bissexto). Comparado a probabilidade
+de encontrar alguém nesse grupo com o mesmo aniversário que o seu, aonde se têm \(23\) chances independentes
+e portanto uma probabilidade de sucesso de \(\frac{23}{365} \approx 0.06\), esse princípio é baseado
+no fato de que existe \(\frac{23 * 22}{2} = 253\) pares distintos de pessoas. Isso leva a uma probabilidade
+de sucesso por volta de \(0.5\) (note que isso não é igual a \(\frac{253}{365} \approx 0.7\) já que esses
+pares não são independentemente distribuídos) \cite{stevens2012attacks}.
+
+\subsection{Ataque do Aniversário}
+
+O ataque do aniversário é a aplicação do paradoxo do aniversário em um cenário real, buscando utilizar desse princípio
+como uma forma ofensiva de obter, burlar ou alterar informações restritas. No contexto deste artigo, o ataque do aniversário
+consistirá na aplicação do princípio para encontrar duas mensagens diferentes que possuam o mesmo valor hash. Sabendo que
+o conjunto das \(tags\) é igual a \(\{0,1\}^n\) e dada a função hash \(h : \mathbb{M} \to \{0,1\}^n\), sendo que \(|\ tags\ | 
+\approx 2^n\) bits e que \(| \mathbb{M} | \gg 2^n\), o algoritmo genérico para o ataque do aniversario é composto pelas seguintes 
+etapas:
+\begin{enumerate}
+\item Escolhe-se \(2^\frac{n}{2}\) mensagens aleatórias em \(\mathbb{M}\), de forma que \(m_1, m_2, ... , m_{2^\frac{n}{2}}
+\in \mathbb{M}\);
+\item Para \(i = 1,2, ... , 2^\frac{n}{2}\) computa-se \(t_i = h(m_i)\), aonde \(t_i\) é o valor hash no conjunto das \(tags\),
+ou seja, \(t_i \in tags\); 
+\item Busca-se por qualquer colisão, isto é, \(t_i = t_j\) para \(i, j \in {1, 2, ... , 2^\frac{n}{2}}\). Caso não seja 
+encontrada, volta-se a etapa \(1\) e repete-se com uma amostra diferente de mensagens.
+\end{enumerate}
+
+\subsection{Se pa - Distributed System}
+A distributed system is a collection of independent computers that appears to its users as a single 
+coherent system \cite{tanenbaum2002distributed}.
+
 \iffalse
 \subsection{Message Integrity}
 
@@ -127,90 +208,6 @@ is exactly what Alice had written.
 
 \fi
 
-\subsection{Função Hash}
-
-Uma função hash é uma função computacionalmente eficiente \(f\) que mapeia uma sequência binária de tamanho 
-arbitrário \(\{0, 1\}^n\) para uma sequência binária de tamanho fixo \(\{0, 1\}^x\), chamada de valor hash, hash 
-ou digest \cite{menezes1996handbook}. Ou seja, \(f : \{0, 1\}^n \to \{0, 1\}^x\) para \(n \gg x\) e \(x\) igual a 
-um valor fixo como \(128, 160, 256\) e \(512\).
-
-Tipicamente, funções hash são construídas a partir de uma função \(h: B \times R \to R\), que recebe um bloco 
-de tamanho fixo de uma mensagem junto com um valor hash intermediário e produz um novo valor hash intermediário. 
-Uma mensagem recebida \(m \in \{0, 1\}^n\) é tipicamente completada para ter um comprimento que seja múltiplo do 
-tamanho do bloco. Em sequência é quebrada em blocos \(m_1, m_2, ... , m_k \in B\) e começando com alguma constante 
-\(r_0 \in \mathbb{R}\), a sequência \(r_i = h(m_i, r_{i-1})\) é computada para \(i = 1, 2, ... , k\) e \(r_k\) é 
-o resultado do hash para a mensagem \(m\) \cite{van1999parallel}.
-
-\subsection{Hash Collision}
-
-Resistência a colisão - Ou seja, é computacionalmente inviável achar duas entradas distintas \(x, x'\)
-que tenham o mesmo valor hash, isso é \(h(x) = h(x')\). (Note que aqui existe uma escolha livre de 
-ambas as entradas) \cite{menezes1996handbook}.
-
-%Collision Resistance - It is computationally infeasible to find any two distinct input \(x, x'\) 
-%which hash to the same output, i.e., such that \(h(x) = h(x')\). (Note that here there is free 
-%choice of both inputs.) \cite{menezes1996handbook}
-
-Uma função hash \(h\) é chamada de livre de colisão (\(collision\ free\)) se ela mapeia mensagens
-de qualquer tamanho para strings de tamanho definido, mas achar \(x, y | h(x) = h(y)\) é um
-problema difícil. Note que estamos concentrando em funções de computação pública, ou seja, funções
-que não são controladas por uma chave secreta \cite{damgaard1989design}.
-
-%A hash function \(h\) is called \(collision free\), if it maps messages of any length to strings of
-%some fixed length, but such that finding \(x\), \(y\) with \(h(x) = h(y)\) is a hard problem. Note 
-%that we are concentrating here on publicly computable hash functions, i.e. functions that are not
-%controlled by a secret key \cite{damgaard1989design}.
-
-Funções hash são projetadas para receber uma mensagem de tamanho arbitrário e mapear ela para uma 
-saída de tamanho definido chamado valor hash. Seja \(H : M \to R\) uma dessas funções hash. 
-
-%Hash functions are designed to take a message of arbitrary bitlength and map it to a fixed size
-%output called a hash result. Let \(H : M \to R\) be such a hash function. Typically, 
-%hash functions are constructed from a function \(h: B \times R \to R\) which takes a fixed size block 
-%of message bits together with an intermediate hash result and produces a new intermediate hash result. 
-%A given message \(m \in \mathbb{M}\) is typically padded to a multiple of the block size and split 
-%into blocks \(m_1, m_2, ... , m_l \in B\). The padding often includes a field which indicates the 
-%number of bits in the original message. Beginning with some constant \(r_0 \in \mathbb{R}\), the sequence 
-%\(r_i = h(m_i, r_{i-1})\) is computed for \(i = 1, 2, ... , l\), and \(r_l\) is the hash result for message 
-%\(m\) \cite{van1999parallel}.
-
-\subsection{Birthday Paradox}
-
-O paradoxo do aniversário é o princípio contraintuitivo que para grupos de somente 23 pessoas, existe a 
-chance de aproximadamente 50\% de encontrar duas pessoas com o mesmo aniversário (Assumindo que
-todos os aniversários são igualmente prováveis e desconsiderado anos bissexto). Comparado a probabilidade
-de encontrar alguém nesse grupo com o mesmo aniversário que o seu, aonde se têm \(23\) chances independentes
-e portanto uma probabilidade de sucesso de \(\frac{23}{365} \approx 0.06\), esse princípio é baseado
-no fato de que existe \(\frac{23 * 22}{2} = 253\) pares distintos de pessoas. Isso leva a uma probabilidade
-de sucesso por volta de \(0.5\) (note que isso não é igual a \(\frac{253}{365} \approx 0.7\) já que esses
-pares não são independentemente distribuídos) \cite{stevens2012attacks}.
-
-\iffalse
-The birthday paradox is the counter-intuitive principle that for
-groups of as few as \(23\) persons there is already a chance of about one half of finding two 
-persons with the same birthday (assuming all birthdays are equally likely and disregarding 
-leap years). Compared to finding someone in this group with your birthday where you have 
-\(23\) independent chances and thus a success probability of \(\frac{23}{365} \approx 0.06\), this principle is 
-based on the fact that there are \(\frac{23 * 22}{2} = 253\) distinct pairs of persons. This leads to 
-a success probability of about \(0.5\) (note that this does not equal \(\frac{253}{365} \approx 0.7\) since these 
-pairs are not independently distributed) \cite{stevens2012attacks}.
-\fi
-
-\subsection{Birthday Attack}
-
-O algoritmo genérico para o ataque do aniversario é composto pelas seguintes etapas:
-\begin{enumerate}
-\item Dada a função hash \(H : M \to \{0,1\}^n\) e sabendo que o tamanho do conjunto das \(tags\) é \(\approx 2^n\) bits e que \(| M | \gg 2^n\)
-\item Escolhe-se \(2^\frac{n}{2}\) mensagens aleatórias em \(\mathbb{M}\), de forma que \(m_1, m_2, ... , m_{2^\frac{n}{2}} \in \mathbb{M}\).
-\item Para \(i = 1,2, ... , 2\frac{n}{2}\) computa-se \(t_i = H(m_i)\), aonde \(t_i\) é o hash no conjunto das \(tags\) % is the hash value in the tag space.
-\item Busca-se por qualquer colisão, ou seja, \(t_i = t_j\) para \(i, j \in {1, 2, ... , 2^\frac{n}{2}}\). Caso não seja encontrada, volta-se a etapa 1 e 
-repete-se com uma amostra diferente de mensagens.
-\end{enumerate}
-
-\subsection{Se pa - Distributed System}
-A distributed system is a collection of independent computers that appears to its users as a single 
-coherent system \cite{tanenbaum2002distributed}.
- 
 \section{Experiments and Evaluation}
 
 Foram aplicados tecnicas de paralelismo (openmp) e distribuicao (mpi) visando uma mlehora na performance

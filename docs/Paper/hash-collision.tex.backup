@@ -23,21 +23,165 @@
 }
 
 \begin{document}
-
 \maketitle
 
 \begin{abstract}
 adhaskjdhaksjd \cite{tanenbaum2002distributed}
 \end{abstract}
 
-\section{Introduction}
+\section{Introdução}
 
-Collision search is an important tool in cryptanalysis. A broad range of cryptanalytic problems
-such as computing discrete logarithms, finding hash function collisions, and meet-in-the-middle
-attacks can be reduced to the problem of finding two distinct inputs, \(a\) and \(b\), to a 
-function \(f\) such that \(f(a) = f(b)\) \cite{van1999parallel}.
+Na era em que computadores e dispositivos eletrônicos tem assumido um papel crucial, tornou-se muito importante manter
+a segurança e integridade de informações transmitidas através desses dispositivos. Para alcançar esse objetivo, é
+amplamente adotado o uso de funções hash, obtendo a integridade da seguinte maneira: Em algum ponto do tempo é computado
+o valor hash correspondente a uma entrada particular. Em outro ponto subsequente, para verificar que o dado de 
+entrada não foi alterado, o valor hash é computado novamente usando a entrada disponível e comparado por igualdade 
+com o valor original. Aplicações específicas de função hash incluem a proteção contra vírus e distribuição 
+de software \cite{menezes1996handbook}.
 
-\section{Related Concepts} 
+Esse cenário apresenta uma característica importante. Se um adversário consegue alterar a entrada e mesmo assim obter 
+um valor do hash igual ao valor da entrada original, o destinatário entenderá que os dados recebidos são íntegros. Tal 
+ataque foi demonstrado em diferentes trabalhos \cite{lenstra2005colliding}, \cite{stevens2007chosen} e
+\cite{lenstra2005possibility}, que provam ser possível alterar um certificado X.509, inclusive a chave pública, e obter o 
+mesmo valor hash.
+
+Essa busca por colisão, ou seja, dois valores distintos que possuam o mesmo valor hash, é uma ferramenta importante em 
+criptoanálise. Uma gama grande de problemas criptoanalíticos tais como computar logaritmos discretos, achar colisões de 
+função hash e o ataque por encontro a médio caminho, meet-in-the-middle, podem ser reduzidos ao problema de achar duas 
+entradas distintas, \(a\) e \(b\), para uma função \(f\) de forma que \(f(a) = f(b)\) \cite{van1999parallel}. Portanto, 
+para garantir a segurança, é necessário que funções hash possuam a propriedade de ser computacionalmente inviável achar 
+duas entradas diferentes que produzam o mesmo valor hash.
+
+(Parágrafo para falar que os computadores são potentes e introduzir os clusters raspberry)
+Por outro lado, os recursos tecnológicos em constante evolução possibilitam um poder computacional maior. Com 
+processadores capazes de realizar milhões de operações por segundo 
+
+Utilizando desse poder computacional de baixo custo e de princípios básicos de probabilidade (paradoxo do aniversário), 
+é possível desenvolver um ataque de força bruta que consiga encontrar uma colisão em funções hash. Tal ataque
+é denominado ataque do aniversário (Birthday Attack) e consiste, em sua forma mais simples, de escolher um quantidade \(n\) 
+de mensagens aleatórias, computar seus valores hash \(h_1, h_2, ... , h_n\) e testar por colisão entre todos, ou seja, 
+\(h_i = h_j\) para \(i, j \in {1, 2, ... , n}\).
+
+Apesar de técnicas para prevenir ataques baseados no paradoxo do aniversário já terem sido apresentadas \cite{aiello1996foiling},
+é interessante discutir o ataque do aniversário já que é possível observar como simples ideias matemáticas em conjunto
+com um cluster de microprocessadores de baixo custo podem ser aplicadas e usadas como forma de ataque cibernético.
+
+Dessa forma, este artigo consiste de cinco seções. A segunda tratará da explicação e definição de conceitos relacionados, 
+como função hash e colisão de valores hash. A terceira consistirá em detalhar e abordar a implementação do cluster de 
+raspberry e dos testes serial, paralelo e distribuído. A quarta seção irá expor os resultados obtidos a partir dos testes
+e a comparação de performance entre eles. E, por fim,  a quinta seção dissertará sobre as conclusões obtidas através dos testes.
+
+\iffalse
+As formas mais comuns de uso de função hash na criptografia são com assinaturas digitais e para
+integridade dos dados. Na assinatura digital, uma mensagem longa geralmente passa pelo processo
+de hash (usando uma função hash publicamente disponível) e somente o resultado do hash é assinado.
+A parte destinatária da mensagem aplica o processo de hash na mensagem, verifica que a assinatura
+recebida é correta para esse valor de hash. Isso salva tanto tempo quanto espaço comparado com 
+assinar a mensagem diretamente, o que iria tipicamente envolver dividir a mensagem em blocos de
+tamanho apropriado e assinar cada bloco individualmente. Note aqui que a inabilidade de achar duas
+mensagens com o mesmo valor de hash é um necessidade de segurança, visto que de outra maneira, a
+assinatura em um valor hash de uma mensagem seria o mesmo que o de outra, permitindo que o assinante
+assine uma mensagem e em um outro ponto no tempo, reivindicar que ele assinou outra \cite{menezes1996handbook}.
+
+The most common cryptographic uses of hash functions are with digital signatures and
+for data integrity.  With digital signatures, a long message is usually hashed (using a publicly 
+available hash function) and only the hash-value is signed.  The party receiving the
+message then hashes the received message, and verifies that the received signature is correct 
+for this hash-value. This saves both time and space compared to signing the message
+directly, which would typically involve splitting the message into appropriate-sized blocks
+and signing each block individually. Note here that the inability to find two messages with
+the same hash-value is a security requirement, since otherwise, the signature on one mes-
+sage hash-value would be the same as that on another, allowing a signer to sign one message
+and at a later point in time claim to have signed another \cite{menezes1996handbook}.
+Hash functions may be used for data integrity as follows. The hash-value corresponding to a particular 
+input is computed at some point in time. The integrity of this hash-value is protected in some manner. 
+At a subsequent point in time, to verify that the input data has not been altered, the hash-value is 
+recomputed using the input at hand, and compared for equality with the original hash-value. Specific 
+applications include virus protection and software distribution \cite{menezes1996handbook}.
+\fi
+
+\section{Conceitos Relacionados} 
+
+\subsection{Função Hash}
+
+Uma função hash é uma função computacionalmente eficiente \(f\) que mapeia uma sequência binária de tamanho 
+arbitrário \(\{0, 1\}^n\) para uma sequência binária de tamanho fixo \(\{0, 1\}^x\), chamada de valor hash, hash 
+ou digest \cite{menezes1996handbook}. Ou seja, \(f : \{0, 1\}^n \to \{0, 1\}^x\) para \(n \gg x\) e \(x\) igual a 
+um valor fixo como \(128, 160, 256\) e \(512\).
+
+Tipicamente, funções hash são construídas a partir de uma função \(h: B \times R \to R\), que recebe um bloco 
+de tamanho fixo de uma mensagem junto com um valor hash intermediário e produz um novo valor hash intermediário. 
+Uma mensagem recebida \(m \in \{0, 1\}^n\) é tipicamente completada para ter um comprimento que seja múltiplo do 
+tamanho do bloco. Em sequência é quebrada em blocos \(m_1, m_2, ... , m_k \in B\) e começando com alguma constante 
+\(r_0 \in \mathbb{R}\), a sequência \(r_i = h(m_i, r_{i-1})\) é computada para \(i = 1, 2, ... , k\) e \(r_k\) é 
+o resultado do hash para a mensagem \(m\) \cite{van1999parallel}.
+
+\subsection{Colisão Hash}
+
+Uma função hash \(h\) é chamada de livre de colisão (\(collision\ free\)) se ela mapeia mensagens
+de qualquer tamanho para strings de tamanho definido, mas achar \(x, y\ |\ h(x) = h(y)\) é um
+problema difícil. Note que estamos concentrando em funções de computação pública, ou seja, funções
+que não são controladas por uma chave secreta \cite{damgaard1989design}.
+
+Resistência a colisão - Ou seja, é computacionalmente inviável achar duas entradas distintas \(x, x'\)
+que tenham o mesmo valor hash, isso é \(h(x) = h(x')\). (Note que aqui existe uma escolha livre de 
+ambas as entradas) \cite{menezes1996handbook}.
+
+%Collision Resistance - It is computationally infeasible to find any two distinct input \(x, x'\) 
+%which hash to the same output, i.e., such that \(h(x) = h(x')\). (Note that here there is free 
+%choice of both inputs.) \cite{menezes1996handbook}
+
+
+
+%A hash function \(h\) is called \(collision free\), if it maps messages of any length to strings of
+%some fixed length, but such that finding \(x\), \(y\) with \(h(x) = h(y)\) is a hard problem. Note 
+%that we are concentrating here on publicly computable hash functions, i.e. functions that are not
+%controlled by a secret key \cite{damgaard1989design}.
+
+Funções hash são projetadas para receber uma mensagem de tamanho arbitrário e mapear ela para uma 
+saída de tamanho definido chamado valor hash. Seja \(H : M \to R\) uma dessas funções hash. 
+
+%Hash functions are designed to take a message of arbitrary bitlength and map it to a fixed size
+%output called a hash result. Let \(H : M \to R\) be such a hash function. Typically, 
+%hash functions are constructed from a function \(h: B \times R \to R\) which takes a fixed size block 
+%of message bits together with an intermediate hash result and produces a new intermediate hash result. 
+%A given message \(m \in \mathbb{M}\) is typically padded to a multiple of the block size and split 
+%into blocks \(m_1, m_2, ... , m_l \in B\). The padding often includes a field which indicates the 
+%number of bits in the original message. Beginning with some constant \(r_0 \in \mathbb{R}\), the sequence 
+%\(r_i = h(m_i, r_{i-1})\) is computed for \(i = 1, 2, ... , l\), and \(r_l\) is the hash result for message 
+%\(m\) \cite{van1999parallel}.
+
+\subsection{Paradoxo do Aniversário}
+
+O paradoxo do aniversário é o princípio contraintuitivo que para grupos de somente \(23\) pessoas, existe a 
+chance de aproximadamente \(50\%\) de encontrar duas pessoas com o mesmo aniversário (Assumindo que
+todos os aniversários são igualmente prováveis e desconsiderado anos bissexto). Comparado a probabilidade
+de encontrar alguém nesse grupo com o mesmo aniversário que o seu, aonde se têm \(23\) chances independentes
+e portanto uma probabilidade de sucesso de \(\frac{23}{365} \approx 0.06\), esse princípio é baseado
+no fato de que existe \(\frac{23 * 22}{2} = 253\) pares distintos de pessoas. Isso leva a uma probabilidade
+de sucesso por volta de \(0.5\) (note que isso não é igual a \(\frac{253}{365} \approx 0.7\) já que esses
+pares não são independentemente distribuídos) \cite{stevens2012attacks}.
+
+\subsection{Ataque do Aniversário}
+
+O ataque do aniversário é a aplicação do paradoxo do aniversário em um cenário real, buscando utilizar desse princípio
+como uma forma ofensiva de obter, burlar ou alterar informações restritas. No contexto deste artigo, o ataque do aniversário
+consistirá na aplicação do princípio para encontrar duas mensagens diferentes que possuam o mesmo valor hash. O algoritmo 
+genérico para o ataque do aniversario é composto pelas seguintes etapas:
+\begin{enumerate}
+\item Denominando \(\{0,1\}^n\) como conjunto das \(tags\), e
+\item Dada a função hash \(h : \mathbb{M} \to \{0,1\}^n\), sabendo que \(|\ tags\ | \approx 2^n\) bits e que 
+\(| \mathbb{M} | \gg 2^n\):
+\item Escolhe-se \(2^\frac{n}{2}\) mensagens aleatórias em \(\mathbb{M}\), de forma que \(m_1, m_2, ... , m_{2^\frac{n}{2}}
+\in \mathbb{M}\);
+\item Para \(i = 1,2, ... , 2^\frac{n}{2}\) computa-se \(t_i = h(m_i)\), aonde \(t_i\) é o valor hash no conjunto das \(tags\); 
+\item Busca-se por qualquer colisão, ou seja, \(t_i = t_j\) para \(i, j \in {1, 2, ... , 2^\frac{n}{2}}\). Caso não seja 
+encontrada, volta-se a etapa \(1\) e repete-se com uma amostra diferente de mensagens.
+\end{enumerate}
+
+\subsection{Se pa - Distributed System}
+A distributed system is a collection of independent computers that appears to its users as a single 
+coherent system \cite{tanenbaum2002distributed}.
 
 \iffalse
 \subsection{Message Integrity}
@@ -64,44 +208,6 @@ is exactly what Alice had written.
 
 \fi
 
-\subsection{Hash Collision}
-
-Hash functions are designed to take a message of arbitrary bitlength and map it to a fixed size
-output called a hash result. Let \(H : M \to R\) be such a hash function. Typically, 
-hash functions are constructed from a function \(h: B \times R \to R\) which takes a fixed size block 
-of message bits together with an intermediate hash result and produces a new intermediate hash result. 
-A given message \(m \in \mathbb{M}\) is typically padded to a multiple of the block size and split 
-into blocks \(m_1, m_2, ... , m_l \in B\). The padding often includes a field which indicates the 
-number of bits in the original message. Beginning with some constant \(r_0 \in \mathbb{R}\), the sequence 
-\(r_i = h(m_i, r_{i-1})\) is computed for \(i = 1, 2, ... , l\), and \(r_l\) is the hash result for message 
-\(m\) \cite{van1999parallel}.
-
-\subsection{Birthday Attack}
-
-The birthday paradox is the counter-intuitive principle that for
-groups of as few as \(23\) persons there is already a chance of about one half of finding two 
-persons with the same birthday (assuming all birthdays are equally likely and disregarding 
-leap years). Compared to finding someone in this group with your birthday where you have 
-\(23\) independent chances and thus a success probability of \(\frac{23}{365} \approx 0.06\), this principle is 
-based on the fact that there are \(\frac{23 * 22}{2} = 253\) distinct pairs of persons. This leads to 
-a success probability of about \(0.5\) (note that this does not equal \(\frac{253}{365} \approx 0.7\) since these 
-pairs are not independently distributed) \cite{stevens2012attacks}.
-
-The following is the general algorithm for the Birthday Attack and in the next section I will discuss
-the Birthday Paradox, which is a problem that gave birth to the Birthday Attack algorithm.
-\begin{enumerate}
-\item Let \(H : M \to \{0,1\}^n\) be a hash function. From this we know that the size of the tag space is \(\approx 2^n\) bits
-and that \(| M | \gg 2^n\)
-\item We choose \(2^\frac{n}{2}\) random messages in \(\mathbb{M}\), i.e. \(m_1, m_2, ... , m_{2^\frac{n}{2}} \in \mathbb{M}\).
-\item For \(i = 1,2, ... , 2\frac{n}{2}\) compute \(t_i = H(m_i)\), where \(t_i\) is the hash value in the tag space.
-\item We then search for any collisions, i.e. \(t_i = t_j\) for \(i, j \in {1, 2, ... , 2^\frac{n}{2}}\). If this is not
-found we go back to step 1 and repeat with different message samples.
-\end{enumerate}
-
-\subsection{Se pa - Distributed System}
-A distributed system is a collection of independent computers that appears to its users as a single 
-coherent system \cite{tanenbaum2002distributed}.
- 
 \section{Experiments and Evaluation}
 
 Foram aplicados tecnicas de paralelismo (openmp) e distribuicao (mpi) visando uma mlehora na performance
@@ -113,5 +219,3 @@ da busca por colisao. A funcao hash usada nos testes foi a MD5.
 \bibliography{hash-collision}
 
 \end{document}
-
-
