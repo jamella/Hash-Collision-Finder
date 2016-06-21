@@ -23,7 +23,7 @@
 }
 
 \begin{document}
-\maketitle
+\[\maketitle
 
 \begin{abstract}
 adhaskjdhaksjd \cite{tanenbaum2002distributed}
@@ -31,18 +31,47 @@ adhaskjdhaksjd \cite{tanenbaum2002distributed}
 
 \section{Introduction}
 
-Apesar de técnicas para evitar o ataque do aniversario ja terem sido criadas \cite{aiello1996foiling}.
+Na era em que computadores e dispositivos eletrônicos tem assumido um papel crucial, tornou-se muito importante manter
+a segurança e integridade de informações transmitidas através desses dispositivos. Para alcançar esse objetivo, é
+amplamente adotado o uso de função hash, obtendo a integridade da seguinte maneira: O valor do hash correspondente a 
+uma entrada particular é computado em algum ponto do tempo. Em um ponto subsequente, para verificar que o dado de 
+entrada não foi alterado, o valor do hash é computado novamente usando a entrada disponível e comparado por igualdade 
+com o valor do hash original. Aplicações específicas de função hash incluem proteção contra vírus e distribuição 
+de software \cite{menezes1996handbook}.
 
-Busca por colisão é uma ferramenta importante em criptoanálise. Uma gama grande de problemas criptoanalíticos
+Esse cenário apresenta uma característica importante. Se um adversário qualquer consegue alterar a entrada e mesmo 
+assim obter um valor do hash igual ao valor da entrada original, o destinatário entenderá que os dados recebidos
+são íntegros. Tal ataque foi demonstrado em diferentes trabalhos \cite{lenstra2005colliding}, \cite{stevens2007chosen} e
+\cite{lenstra2005possibility}, que provam ser possível alterar um certificado X.509, inclusive a chave pública, e obter o 
+mesmo valor hash.
+
+A busca por colisão é uma ferramenta importante em criptoanálise. Uma gama grande de problemas criptoanalíticos
 tais como computar logaritmos discretos, achar colisões de função hash e o ataque por encontro a médio caminho,
-meet-in-the-middle, pode ser reduzido ao problema de achar duas entradas distintas, \(a\) e \(b\), para uma
-função \(f\) de forma que \(f(a) = f(b)\) \cite{van1999parallel}.
+meet-in-the-middle, podem ser reduzidos ao problema de achar duas entradas distintas, \(a\) e \(b\), para uma
+função \(f\) de forma que \(f(a) = f(b)\) \cite{van1999parallel}. Portanto, para garantir a segurança, é necessário 
+que funções hash possuam a propriedade de ser computacionalmente inviável achar duas entradas diferentes que produzam 
+o mesmo valor hash.
 
-%Collision search is an important tool in cryptanalysis. A broad range of cryptanalytic problems
-%such as computing discrete logarithms, finding hash function collisions, and meet-in-the-middle
-%attacks can be reduced to the problem of finding two distinct inputs, \(a\) and \(b\), to a 
-%function \(f\) such that \(f(a) = f(b)\) \cite{van1999parallel}.
+(Parágrafo para falar que os computadores são potentes e introduzir os clusters raspberry)
+Por outro lado, os recursos tecnológicos em constante evolução possibilitam um poder computacional maior. Com 
+processadores capazes de realizar milhões de operações por segundo 
 
+Utilizando desse poder computacional de baixo custo e de princípios básicos de probabilidade e estatística (paradoxo do 
+aniversário), é possível desenvolver um ataque de força bruta que consiga encontrar uma colisão em funções hash. Tal ataque
+é denominado ataque do aniversário (Birthday Attack) e consiste, em sua forma mais simples, de escolher um quantidade \(n\) 
+de mensagens aleatórias, computar seus valores hash \(h_1, h_2, ... , h_n\) e testar por colisão entre todos, ou seja, 
+\(h_i = h_j\) para \(i, j \in {1, 2, ... , n}\).
+
+Apesar de técnicas para prevenir ataques baseados no paradoxo do aniversário já terem sido criadas \cite{aiello1996foiling},
+é interessante discutir o ataque do aniversário já que é possível observar como simples ideias matemáticas em conjunto
+com um cluster de microprocessadores de baixo custo podem ser aplicadas e usadas como forma de ataque cibernético.
+
+Dessa forma, este artigo consiste de X seções. A segunda tratará da explicação e definição de conceitos relacionados, como função
+hash e colisão de valores hash. A terceira consistirá em detalhar e abordar a implementação do cluster de raspberry e dos testes
+serial, paralelo e distribuído. A quarta seção irá expor os resultados obtidos a partir dos testes e a quinta seção dissertará
+sobre as conclusões obtidas através dos testes.
+
+\iffalse
 As formas mais comuns de uso de função hash na criptografia são com assinaturas digitais e para
 integridade dos dados. Na assinatura digital, uma mensagem longa geralmente passa pelo processo
 de hash (usando uma função hash publicamente disponível) e somente o resultado do hash é assinado.
@@ -53,14 +82,7 @@ tamanho apropriado e assinar cada bloco individualmente. Note aqui que a inabili
 mensagens com o mesmo valor de hash é um necessidade de segurança, visto que de outra maneira, a
 assinatura em um valor hash de uma mensagem seria o mesmo que o de outra, permitindo que o assinante
 assine uma mensagem e em um outro ponto no tempo, reivindicar que ele assinou outra \cite{menezes1996handbook}.
-Funções hash podem ser usadas para manter a integridade da seguinte maneira. O valor do hash correspondente
-a uma entrada particular é computado em algum ponto do tempo. A integridade desse valor hash é protegido
-de alguma maneira. Em um ponto subsequente no tempo, para verificar que o dado de entrada não foi
-alterado, o valor do hash é computado novamente usando a entrada disponível e comparado por igualdade
-com o valor do hash original. Aplicações específicas incluem proteção contra vírus e distribuição de
-software \cite{menezes1996handbook}.
 
-\iffalse
 The most common cryptographic uses of hash functions are with digital signatures and
 for data integrity.  With digital signatures, a long message is usually hashed (using a publicly 
 available hash function) and only the hash-value is signed.  The party receiving the
@@ -105,13 +127,11 @@ is exactly what Alice had written.
 
 \fi
 
-\subsection{Hash Functions}
+\subsection{Função Hash}
 
-Uma função hash é a função computacionalmente eficiente que mapeia uma sequência binária de tamanho 
-arbitrário para uma sequência binária de tamanho fixo, chamada de hash-value, hash ou digest \cite{menezes1996handbook}. 
-
-%A hash function is a computationally efficient function mapping binary strings of arbitrary length 
-%to binary strings of some fixed length, called hash-values \cite{menezes1996handbook}.
+Uma função hash é uma função computacionalmente eficiente \(f\) que mapeia uma sequência binária de tamanho arbitrário \({0, 1}^n\) 
+para uma sequência binária de tamanho fixo \({0, 1}^x\), chamada de valor hash, hash ou digest \cite{menezes1996handbook}. Ou seja, 
+\(f : {0, 1}^n \to {0, 1}^x\) para \(n \gg x\) e \(x\) igual a um valor fixo como 128, 160, 256 e 512.
 
 \subsection{Hash Collision}
 
@@ -201,4 +221,5 @@ da busca por colisao. A funcao hash usada nos testes foi a MD5.
 \bibliography{hash-collision}
 
 
+\]
 \end{document}
