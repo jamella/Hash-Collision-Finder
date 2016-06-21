@@ -12,10 +12,29 @@ Damg{\aa}rd, I.~B. (1989).
 \newblock In {\em Advances in Cryptology—CRYPTO’89 Proceedings}, pages
   416--427. Springer.
 
+\bibitem[Lenstra and De~Weger 2005]{lenstra2005possibility}
+Lenstra, A. and De~Weger, B. (2005).
+\newblock On the possibility of constructing meaningful hash collisions for
+  public keys.
+\newblock In {\em Australasian Conference on Information Security and Privacy},
+  pages 267--279. Springer.
+
+\bibitem[Lenstra et~al. 2005]{lenstra2005colliding}
+Lenstra, A.~K., Wang, X., and de~Weger, B. (2005).
+\newblock Colliding x. 509 certificates.
+\newblock Technical report.
+
 \bibitem[Menezes et~al. 1996]{menezes1996handbook}
 Menezes, A.~J., Van~Oorschot, P.~C., and Vanstone, S.~A. (1996).
 \newblock {\em Handbook of applied cryptography}.
 \newblock CRC press.
+
+\bibitem[Stevens et~al. 2007]{stevens2007chosen}
+Stevens, M., Lenstra, A., and De~Weger, B. (2007).
+\newblock Chosen-prefix collisions for md5 and colliding x. 509 certificates
+  for different identities.
+\newblock In {\em Annual International Conference on the Theory and
+  Applications of Cryptographic Techniques}, pages 1--22. Springer.
 
 \bibitem[Stevens et~al. 2012]{stevens2012attacks}
 Stevens, M. M.~J. et~al. (2012).
