@@ -9,6 +9,9 @@
 \usepackage[utf8]{inputenc}  
 % UTF-8 encoding is recommended by ShareLaTex
 
+% Para usar pseudo algoritmos
+\usepackage[]{algorithm2e}
+
 \usepackage{amsmath}
 \usepackage{amsfonts}
 
@@ -116,30 +119,34 @@ tamanho do bloco. Em sequência é quebrada em blocos \(m_1, m_2, ... , m_k \in 
 \(r_0 \in \mathbb{R}\), a sequência \(r_i = h(m_i, r_{i-1})\) é computada para \(i = 1, 2, ... , k\) e \(r_k\) é 
 o resultado do hash para a mensagem \(m\) \cite{van1999parallel}.
 
+
+
 \subsection{Colisão Hash}
 
-Uma função hash \(h\) é chamada de livre de colisão (\(collision\ free\)) se ela mapeia mensagens
-de qualquer tamanho para strings de tamanho definido, mas achar \(x, y\ |\ h(x) = h(y)\) é um
-problema difícil. Note que estamos concentrando em funções de computação pública, ou seja, funções
-que não são controladas por uma chave secreta \cite{damgaard1989design}.
-
+Funções hash são projetadas para receber uma mensagem de tamanho arbitrário e mapear ela para uma saída de 
+tamanho definido. Se o conjunto de entrada \(\mathbb{M}\) é muito maior que o conjunto de saída, \(\mathbb{M}
+\gg \mathbb{R}\), então existem valores \(m \in \mathbb{M}\) que irão ser mapeados para um mesmo valor em 
+\(\mathbb{R}\). Dois valores \(m_1\) e \(m_2\) sendo que \(m_1 \neq m_2\) mas \(h(m_1) = h(m_2)\) é
+chamado de colisão.
+ 
 Resistência a colisão - Ou seja, é computacionalmente inviável achar duas entradas distintas \(x, x'\)
 que tenham o mesmo valor hash, isso é \(h(x) = h(x')\). (Note que aqui existe uma escolha livre de 
 ambas as entradas) \cite{menezes1996handbook}.
 
+Uma função hash \(h\) é chamada de livre de colisão (\(collision\ free\)) se ela mapeia mensagens
+de qualquer tamanho para strings de tamanho definido, mas achar \(x, y\ |\ h(x) = h(y)\) é um
+problema difícil \cite{damgaard1989design}.
+
 %Collision Resistance - It is computationally infeasible to find any two distinct input \(x, x'\) 
 %which hash to the same output, i.e., such that \(h(x) = h(x')\). (Note that here there is free 
 %choice of both inputs.) \cite{menezes1996handbook}
-
-
 
 %A hash function \(h\) is called \(collision free\), if it maps messages of any length to strings of
 %some fixed length, but such that finding \(x\), \(y\) with \(h(x) = h(y)\) is a hard problem. Note 
 %that we are concentrating here on publicly computable hash functions, i.e. functions that are not
 %controlled by a secret key \cite{damgaard1989design}.
 
-Funções hash são projetadas para receber uma mensagem de tamanho arbitrário e mapear ela para uma 
-saída de tamanho definido chamado valor hash. Seja \(H : M \to R\) uma dessas funções hash. 
+
 
 %Hash functions are designed to take a message of arbitrary bitlength and map it to a fixed size
 %output called a hash result. Let \(H : M \to R\) be such a hash function. Typically, 
@@ -162,26 +169,34 @@ no fato de que existe \(\frac{23 * 22}{2} = 253\) pares distintos de pessoas. Is
 de sucesso por volta de \(0.5\) (note que isso não é igual a \(\frac{253}{365} \approx 0.7\) já que esses
 pares não são independentemente distribuídos) \cite{stevens2012attacks}.
 
+Uma conclusão importante obtida disso é que se uma função hash gera como saída \(n\) bits, sempre haverá um ataque que
+roda em tempo \(2^\frac{n}{2}\). Por exemplo, se a saída é de \(128\) bits, então uma colisão pode ser encontrada em tempo
+\(\approx 2^{64}\), o que não é considerado suficientemente seguro. Outra observação interessante é que aniversários na 
+verdade não são uniformemente distribuídos, mas o paradoxo do aniversário foi montado com a suposição de que eles são 
+uniformemente distribuídos.
+
 \subsection{Ataque do Aniversário}
 
 O ataque do aniversário é a aplicação do paradoxo do aniversário em um cenário real, buscando utilizar desse princípio
 como uma forma ofensiva de obter, burlar ou alterar informações restritas. No contexto deste artigo, o ataque do aniversário
-consistirá na aplicação do princípio para encontrar duas mensagens diferentes que possuam o mesmo valor hash. O algoritmo 
-genérico para o ataque do aniversario é composto pelas seguintes etapas:
+consistirá na aplicação do princípio para encontrar duas mensagens diferentes que possuam o mesmo valor hash. Sabendo que
+o conjunto das \(tags\) é igual a \(\{0,1\}^n\) e dada a função hash \(h : \mathbb{M} \to \{0,1\}^n\), sendo que \(|\ tags\ | 
+\approx 2^n\) bits e que \(| \mathbb{M} | \gg 2^n\), o algoritmo genérico para o ataque do aniversario é composto pelas seguintes 
+etapas:
 \begin{enumerate}
-\item Denominando \(\{0,1\}^n\) como conjunto das \(tags\), e
-\item Dada a função hash \(h : \mathbb{M} \to \{0,1\}^n\), sabendo que \(|\ tags\ | \approx 2^n\) bits e que 
-\(| \mathbb{M} | \gg 2^n\):
 \item Escolhe-se \(2^\frac{n}{2}\) mensagens aleatórias em \(\mathbb{M}\), de forma que \(m_1, m_2, ... , m_{2^\frac{n}{2}}
 \in \mathbb{M}\);
-\item Para \(i = 1,2, ... , 2^\frac{n}{2}\) computa-se \(t_i = h(m_i)\), aonde \(t_i\) é o valor hash no conjunto das \(tags\); 
-\item Busca-se por qualquer colisão, ou seja, \(t_i = t_j\) para \(i, j \in {1, 2, ... , 2^\frac{n}{2}}\). Caso não seja 
+\item Para \(i = 1,2, ... , 2^\frac{n}{2}\) computa-se \(t_i = h(m_i)\), aonde \(t_i\) é o valor hash no conjunto das \(tags\),
+ou seja, \(t_i \in tags\); 
+\item Busca-se por qualquer colisão, isto é, \(t_i = t_j\) para \(i, j \in {1, 2, ... , 2^\frac{n}{2}}\). Caso não seja 
 encontrada, volta-se a etapa \(1\) e repete-se com uma amostra diferente de mensagens.
 \end{enumerate}
 
+\iffalse
 \subsection{Se pa - Distributed System}
 A distributed system is a collection of independent computers that appears to its users as a single 
 coherent system \cite{tanenbaum2002distributed}.
+\fi
 
 \iffalse
 \subsection{Message Integrity}
@@ -208,12 +223,69 @@ is exactly what Alice had written.
 
 \fi
 
-\section{Experiments and Evaluation}
+\section{Implementação do Ataque do Aniversário}
 
-Foram aplicados tecnicas de paralelismo (openmp) e distribuicao (mpi) visando uma mlehora na performance
-da busca por colisao. A funcao hash usada nos testes foi a MD5.
+\subsection{Estruturação do Cluster Raspberry}
 
-\section{Conclusions and Future work}
+\subsection{Implementação do Ataque}
+
+A implementação do ataque foi efetuada de seis maneiras diferentes. Consistindo de duas implementações seriais, duas 
+paralelas e duas distribuídas. As implementações obrigatoriamente tem que realizar três tarefas diferentes:
+\begin{itemize}
+ \item Coletar mensagem aleatória \(m \in \mathbb{M}\);
+ \item Computar o valor hash \(h_m\) da mensagem;
+ \item Comparar o valor hash com os outros valores computados.
+\end{itemize}
+
+Elas diferem entre si pela forma como executam essas tarefas. Sendo ou modular, aonde as tarefas são executadas 
+separadamente, ou contínua, aonde um pedaço de cada tarefa é executado repetidamente até todas as tarefas serem 
+concluídas.
+
+\subsubsection{Implementação Serial Contínua}
+
+A implementação serial foi planejada para executar em um único core de um processador. Sendo feita sequencialmente
+e sem distribuição do processamento. O algoritmo serial contínuo funciona da seguinte maneira:
+\begin{algorithm}[H]
+  n = número de mensagens aleatórias\;
+  \While{Primeiro iterador for menor que n}{
+    Coleta uma mensagem aleatória\;
+    Computa o valor hash correspondente a mensagem\;
+    \While{Segundo iterador for menor que o número de hashs já computados}{
+      Compara o hash atual com os outros já computados\;
+    }
+  }
+\end{algorithm}
+
+\subsubsection{Implementação Serial Modular}
+
+A implementação serial modular possui as mesmas características da serial contínua, com exceção da sequência em que as
+tarefas ocorrem. Elas são executadas separadamente:
+\begin{algorithm}[H]
+  n = número de mensagens aleatórias\;
+  \While{Iterador \(<\) n}{
+    Coleta uma mensagem aleatória\;
+    Computa o valor hash correspondente a mensagem\;
+  }
+  \While{Iterador \(<\) número de hashs já computados}{
+    Compara o hash atual com os outros\;
+    \If{Hash atual \(=\) Outro hash}{
+      Colisão encontrada\;
+      Aborta a execução\;
+    }
+  }
+\end{algorithm}
+
+\subsubsection{Implementação Paralela Contínua}
+
+\subsubsection{Implementação Paralela Modular}
+
+\subsubsection{Implementação Distribuída Contínua}
+
+\subsubsection{Implementação Distribuída Modular}
+
+\section{Experimentos e Resultados}
+
+\section{Conclusões e Trabalhos Futuros}
 
 \bibliographystyle{sbc}
 \bibliography{hash-collision}
